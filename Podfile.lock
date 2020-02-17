@@ -1,0 +1,24 @@
+PODS:
+  - MVVM-Swift (1.1.0)
+  - ObjectMapper (3.5.1)
+  - SwiftLint (0.38.0)
+
+DEPENDENCIES:
+  - MVVM-Swift
+  - ObjectMapper
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - MVVM-Swift
+    - ObjectMapper
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+
+PODFILE CHECKSUM: d1ca8a39d5bc15fcadc08043a751a07b78809256
+
+COCOAPODS: 1.8.1
