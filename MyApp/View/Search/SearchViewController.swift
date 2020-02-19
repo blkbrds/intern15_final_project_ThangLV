@@ -8,9 +8,10 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "SEARCH"
     }
 }

@@ -24,6 +24,8 @@
 		B0B5904023FBD3E100EEE1AC /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B5903923FBD3E100EEE1AC /* HomeViewController.xib */; };
 		B0B5904123FBD3E100EEE1AC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5903A23FBD3E100EEE1AC /* HomeViewController.swift */; };
 		B0B5904323FBD48D00EEE1AC /* Data.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5904223FBD48D00EEE1AC /* Data.Ext.swift */; };
+		B0B5904523FBDB2400EEE1AC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5904423FBDB2400EEE1AC /* Category.swift */; };
+		B0B5904723FBDCB400EEE1AC /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5904623FBDCB400EEE1AC /* Networking.swift */; };
 		D028ADD12AA8716ECB14FFD9 /* Pods_MyApp_MyAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49F1AB05FCB88523C52A0ED /* Pods_MyApp_MyAppTests.framework */; };
 		EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0105441E8F8ADF00CE013D /* AppDelegate.swift */; };
 		EC2C488D1EAF011C00B22F4B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C488C1EAF011C00B22F4B /* Utils.swift */; };
@@ -99,6 +101,8 @@
 		B0B5903923FBD3E100EEE1AC /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		B0B5903A23FBD3E100EEE1AC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B0B5904223FBD48D00EEE1AC /* Data.Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.Ext.swift; sourceTree = "<group>"; };
+		B0B5904423FBDB2400EEE1AC /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B0B5904623FBDCB400EEE1AC /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		EC0105421E8F8ADF00CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC0105441E8F8ADF00CE013D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC01055C1E8F8AF000CE013D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,9 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				B0B5903423FBD3E100EEE1AC /* CategoryCollectionViewCell.swift */,
-				B0B5903523FBD3E100EEE1AC /* CountryCollectionViewCell.xib */,
 				B0B5903623FBD3E100EEE1AC /* CategoryCollectionViewCell.xib */,
 				B0B5903723FBD3E100EEE1AC /* CountryCollectionViewCell.swift */,
+				B0B5903523FBD3E100EEE1AC /* CountryCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -359,6 +363,8 @@
 			isa = PBXGroup;
 			children = (
 				B0B5901E23FBD2DE00EEE1AC /* Country.swift */,
+				B0B5904423FBDB2400EEE1AC /* Category.swift */,
+				B0B5904623FBDCB400EEE1AC /* Networking.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -612,7 +618,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$CI\" == 'true' ]]; then\n    exit 0\nfi\n\nif [[ -s \"${PODS_ROOT}/SwiftLint/swiftlint\" ]]; then\n    echo 'Linting...'\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n    echo 'error: SwiftLint not installed, please read README first.'\n    exit 1\nfi\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -624,6 +631,7 @@
 				EC5337C11EF7939C00ACE038 /* TableCell.swift in Sources */,
 				B0B5902723FBD32200EEE1AC /* NavigationController.swift in Sources */,
 				ECF23AC31E9B9264008C23C1 /* StringExt.swift in Sources */,
+				B0B5904523FBDB2400EEE1AC /* Category.swift in Sources */,
 				F537DDD623979E8A00638CB4 /* NSErrorExt.swift in Sources */,
 				B0B5903B23FBD3E100EEE1AC /* CategoryCollectionViewCell.swift in Sources */,
 				B0B5904123FBD3E100EEE1AC /* HomeViewController.swift in Sources */,
@@ -639,6 +647,7 @@
 				EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */,
 				F537DDD0239794BF00638CB4 /* URL.swift in Sources */,
 				EC332A481EA0A8CB0011DF1E /* Api.swift in Sources */,
+				B0B5904723FBDCB400EEE1AC /* Networking.swift in Sources */,
 				B0B5902D23FBD35600EEE1AC /* FavoriteViewController.swift in Sources */,
 				ECD1C29B1EA725B1000EC989 /* InputViewExt.swift in Sources */,
 				B0B5903F23FBD3E100EEE1AC /* HomeViewModel .swift in Sources */,

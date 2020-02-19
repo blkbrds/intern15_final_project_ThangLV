@@ -10,11 +10,14 @@ import Foundation
 import UIKit
 
 final class Country {
-    let name: String
-    let image: UIImage?
+    var name: String = ""
+    var image: UIImage? = nil
     
-    init(name: String, image: UIImage?) {
-        self.name = name
+    init(json: JSON) {
+        name = json["strArea"] as? String ?? ""
+    }
+    
+    init(image: UIImage? = nil) {
         self.image = image
     }
 }

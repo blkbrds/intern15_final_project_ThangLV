@@ -19,7 +19,7 @@ class CountryCollectionViewCell: CollectionCell {
         layer.cornerRadius = 20
         clipsToBounds = true
     }
-    func configData(image: UIImage?) {
-        countryImageView.image = image
+    func configData(name: String) {
+        countryNameLabel.text = name
     }
 }
