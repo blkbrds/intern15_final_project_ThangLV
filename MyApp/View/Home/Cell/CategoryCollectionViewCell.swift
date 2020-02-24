@@ -9,13 +9,12 @@
 import UIKit
 
 final class CategoryCollectionViewCell: CollectionCell {
-    
+
     // MARK: - IBOutlets
     @IBOutlet private weak var categoryImageView: UIImageView!
     @IBOutlet private weak var categoryNameLabel: UILabel!
-    @IBOutlet private weak var categoryDescriptionLabel: UILabel!    
-    var isExpanded: Bool = false
-    
+    @IBOutlet private weak var categoryDescriptionLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.masksToBounds = false
@@ -23,20 +22,20 @@ final class CategoryCollectionViewCell: CollectionCell {
         clipsToBounds = true
         configImageView()
     }
-    
+
     // MARK: - Private functions
     private func configImageView() {
         categoryImageView.layer.masksToBounds = false
         categoryImageView.layer.cornerRadius = 10
         categoryImageView.clipsToBounds = true
     }
-    
-    func updateData(category: Category) {
-        categoryNameLabel.text = category.categoryName
-        categoryDescriptionLabel.text = category.categoryDescription
-    }
-    
-    func updateData2(image: UIImage?) {
-        categoryImageView.image = image
+
+    func updateData(category: Category? = nil, image: UIImage? = nil) {
+        if let category = category {
+            categoryNameLabel.text = category.categoryName
+            categoryDescriptionLabel.text = category.categoryDescription
+        } else {
+            categoryImageView.image = image
+        }
     }
 }
