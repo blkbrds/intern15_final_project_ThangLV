@@ -8,10 +8,12 @@
 
 import UIKit
 
-class CountryCollectionViewCell: CollectionCell {
+final class CountryCollectionViewCell: CollectionCell {
+    
     // MARK: - IBOutlets
     @IBOutlet weak var countryImageView: UIImageView!
-    @IBOutlet weak var countryNameLabel: UILabel!
+    @IBOutlet private weak var countryNameLabel: UILabel!
+    
     // MARK: - Override functions
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,7 +21,9 @@ class CountryCollectionViewCell: CollectionCell {
         layer.cornerRadius = 20
         clipsToBounds = true
     }
-    func configData(name: String) {
+    
+    func configData(name: String, image: UIImage) {
         countryNameLabel.text = name
+        countryImageView.image = image
     }
 }

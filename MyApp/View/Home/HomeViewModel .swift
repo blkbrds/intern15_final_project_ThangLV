@@ -8,11 +8,13 @@
 
 import Foundation
 import UIKit
+import MVVM
 
 typealias Completion = (Bool, String) -> Void
 
 @available(iOS 11.0, *)
-final class HomeViewModel {
+final class HomeViewModel: ViewModel {
+    
     // MARK: - Properties
     let countryNames: [String] = ["American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Irish", "Italian", "Jamaican", "Japanese", "Kenyan", "Malaysian", "Mexican", "Moroccan", "Russian", "Spanish", "Thai", "Tunisian", "Turkish", "Unknown", "Vietnamese"]
     var countries: [Country] = []
@@ -50,7 +52,7 @@ final class HomeViewModel {
                 if let data = data {
                     let json = data.toJSObject()
                     let meals = json["meals"] as? [JSON] ?? []
-                    print(meals)
+
                     for item in meals {
                         let country = Country(json: item)
                         self.countries.append(country)
