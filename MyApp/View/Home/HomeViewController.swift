@@ -8,49 +8,56 @@
 
 import UIKit
 
+// MARK: - Struct
+struct Config {
+    static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
+    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 30, height: UIScreen.main.bounds.width / 2)
+    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 9, height: UIScreen.main.bounds.height / 9)
+}
+
+//MARK: - Enum
+enum ViewTypeStatus {
+    case tableType
+    case collectionType
+
+    var itemSize: CGSize {
+        switch self {
+        case .tableType:
+            return Config.tableTypeItemSize
+        case .collectionType:
+            return Config.collectionTypeItemSize
+        }
+    }
+}
+
+
 @available(iOS 11.0, *)
 final class HomeViewController: ViewController {
 
-    //MARK: - Enum
-    enum ViewTypeStatus {
-        case tableType
-        case collectionType
-
-        var itemSize: CGSize {
-            switch self {
-            case .tableType:
-                return CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
-            case .collectionType:
-                return CGSize(width: UIScreen.main.bounds.width / 2 - 30, height: UIScreen.main.bounds.width / 2)
-            }
-        }
-    }
-
-    // MARK: - Struct
-    struct Config {
-        static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    }
-
     // MARK: - IBOutlets
-    @IBOutlet private weak var countryCollectionView: UICollectionView!
-    @IBOutlet private weak var categoryCollectionView: UICollectionView!
+    @IBOutlet private weak var countryCollectionView: CountryCollectionView!
+    @IBOutlet private weak var categoryCollectionView: CategoryCollectionView!
 
     // MARK: - Private properties
     private let viewModel = HomeViewModel()
-    private let countryCollectionViewCell = "CountryCollectionViewCell"
     private let categoryCollectionViewCell = "CategoryCollectionViewCell"
+    private let countryCollectionViewCell = "CountryCollectionViewCell"
     private var viewTypeStatus = ViewTypeStatus.tableType
 
     // MARK: Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
     }
 
     override func setupUI() {
         title = "HOME"
-        configCategoryCollectionView()
-        configCountryCollectionView()
         configNavigationBar()
+        categoryCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        countryCollectionView.dataSource = self
+        countryCollectionView.delegate = self
     }
 
     override func setupData() {
@@ -67,23 +74,6 @@ final class HomeViewController: ViewController {
     }
 
     // MARK: - Private functions
-    private func configCategoryCollectionView() {
-        let categoryCollectionViewCellNib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
-        categoryCollectionView.register(categoryCollectionViewCellNib, forCellWithReuseIdentifier: categoryCollectionViewCell)
-        if let flowLayout = countryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.scrollDirection = .horizontal
-        }
-        categoryCollectionView.dataSource = self
-        categoryCollectionView.delegate = self
-    }
-
-    private func configCountryCollectionView() {
-        let countryCollectionViewCellNib = UINib(nibName: "CountryCollectionViewCell", bundle: nil)
-        countryCollectionView.register(countryCollectionViewCellNib, forCellWithReuseIdentifier: countryCollectionViewCell)
-        countryCollectionView.dataSource = self
-        countryCollectionView.delegate = self
-    }
-
     private func configNavigationBar() {
         let viewTypeButton = UIBarButtonItem(image: #imageLiteral(resourceName: "collectionview"), style: .plain, target: self, action: #selector(viewTypeButtonTouchUpInside))
         navigationItem.rightBarButtonItem = viewTypeButton
@@ -118,10 +108,7 @@ final class HomeViewController: ViewController {
 @available(iOS 11.0, *)
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == countryCollectionView {
-            return viewModel.countries.count
-        }
-        return viewModel.categories.count
+        return viewModel.numberOfItems(isCountry: collectionView == countryCollectionView, inSection: section)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -130,18 +117,18 @@ extension HomeViewController: UICollectionViewDataSource {
         switch collectionView {
         case countryCollectionView:
             if let countryCollectionCell = countryCollectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CountryCollectionViewCell {
-                countryCollectionCell.configData(name: viewModel.countries[indexPath.row].name, image: UIImage(named: viewModel.countryNames[indexPath.row]) ?? UIImage())
+                countryCollectionCell.configData(name: viewModel.countryName(at: indexPath), image: UIImage(named: viewModel.countryNames[indexPath.row]) ?? UIImage())
 
                 return countryCollectionCell
             }
         case categoryCollectionView:
-            categoryCollectionCell.updateData(category: viewModel.categories[indexPath.row])
-            Networking.shared().downloadImage(url: viewModel.categories[indexPath.row].categoryThumb) { (image) in
+            categoryCollectionCell.updateData(category: viewModel.categoryName(at: indexPath))
+            Networking.shared().downloadImage(url: viewModel.categoryThumb(at: indexPath)) { (image) in
                 if let image = image {
-                    categoryCollectionCell.updateData2(image: image)
-                    self.viewModel.categories[indexPath.row].categoryImage = image
+                    categoryCollectionCell.updateData(image: image)
+                    self.viewModel.categoryThumb(at: indexPath)
                 } else {
-                    categoryCollectionCell.updateData2(image: nil)
+                    categoryCollectionCell.updateData(image: nil)
                 }
             }
         default:
@@ -171,10 +158,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == categoryCollectionView {
             return viewTypeStatus.itemSize
         }
-        return CGSize(width: countryCollectionView.bounds.height - 20, height: countryCollectionView.bounds.height - 20)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Config.insetForSection
+        return Config.countryCollectionViewItemSize
     }
 }
