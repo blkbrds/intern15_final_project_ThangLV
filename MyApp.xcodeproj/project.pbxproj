@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6C392FC5AF0C61509011C30D /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8000CCB9AE328B83764288 /* Pods_MyApp.framework */; };
-		B025526423FE640B00D118C0 /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B025526223FE640B00D118C0 /* FoodListViewController.swift */; };
-		B025526523FE640B00D118C0 /* FoodListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B025526323FE640B00D118C0 /* FoodListViewController.xib */; };
-		B025526923FE649700D118C0 /* CountryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B025526723FE649700D118C0 /* CountryDetailViewController.swift */; };
-		B025526A23FE649700D118C0 /* CountryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B025526823FE649700D118C0 /* CountryDetailViewController.xib */; };
+		B00DD3132404BDC500714A10 /* CountryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00DD3102404BDC500714A10 /* CountryDetailViewController.xib */; };
+		B00DD3142404BDC500714A10 /* CountryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DD3112404BDC500714A10 /* CountryDetailViewController.swift */; };
+		B00DD3152404BDC500714A10 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DD3122404BDC500714A10 /* CountryDetailViewModel.swift */; };
+		B00DD3192404BDE000714A10 /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00DD3172404BDE000714A10 /* CustomCollectionViewCell.xib */; };
+		B00DD31A2404BDE000714A10 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DD3182404BDE000714A10 /* CustomCollectionViewCell.swift */; };
+		B00DD3232404BE2E00714A10 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DD3222404BE2E00714A10 /* Food.swift */; };
+		B00DD3272404CE5B00714A10 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DD3252404CE5B00714A10 /* FoodDetailViewController.swift */; };
+		B00DD3282404CE5B00714A10 /* FoodDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00DD3262404CE5B00714A10 /* FoodDetailViewController.xib */; };
 		B069D9CC2403B5CB000B1C22 /* CountryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069D9CB2403B5CB000B1C22 /* CountryCollectionView.swift */; };
 		B069D9CE2403B6FC000B1C22 /* CategoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069D9CD2403B6FC000B1C22 /* CategoryCollectionView.swift */; };
 		B0B5902023FBD2DE00EEE1AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5901E23FBD2DE00EEE1AC /* Country.swift */; };
@@ -91,10 +95,14 @@
 		47FCF93A9948D710C06CECAF /* Pods-MyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyApp/Pods-MyApp.release.xcconfig"; sourceTree = "<group>"; };
 		48F8D478234569385F88AC15 /* Pods-MyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyApp/Pods-MyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7E8000CCB9AE328B83764288 /* Pods_MyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B025526223FE640B00D118C0 /* FoodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewController.swift; sourceTree = "<group>"; };
-		B025526323FE640B00D118C0 /* FoodListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodListViewController.xib; sourceTree = "<group>"; };
-		B025526723FE649700D118C0 /* CountryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewController.swift; sourceTree = "<group>"; };
-		B025526823FE649700D118C0 /* CountryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailViewController.xib; sourceTree = "<group>"; };
+		B00DD3102404BDC500714A10 /* CountryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryDetailViewController.xib; sourceTree = "<group>"; };
+		B00DD3112404BDC500714A10 /* CountryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDetailViewController.swift; sourceTree = "<group>"; };
+		B00DD3122404BDC500714A10 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
+		B00DD3172404BDE000714A10 /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		B00DD3182404BDE000714A10 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		B00DD3222404BE2E00714A10 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		B00DD3252404CE5B00714A10 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
+		B00DD3262404CE5B00714A10 /* FoodDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodDetailViewController.xib; sourceTree = "<group>"; };
 		B069D9CB2403B5CB000B1C22 /* CountryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionView.swift; sourceTree = "<group>"; };
 		B069D9CD2403B6FC000B1C22 /* CategoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionView.swift; sourceTree = "<group>"; };
 		B0B5901E23FBD2DE00EEE1AC /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -182,20 +190,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B025526123FE63E500D118C0 /* Food List */ = {
+		B00DD3162404BDD200714A10 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				B025526223FE640B00D118C0 /* FoodListViewController.swift */,
-				B025526323FE640B00D118C0 /* FoodListViewController.xib */,
+				B00DD3182404BDE000714A10 /* CustomCollectionViewCell.swift */,
+				B00DD3172404BDE000714A10 /* CustomCollectionViewCell.xib */,
 			);
-			path = "Food List";
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B00DD3242404CE4200714A10 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B00DD3252404CE5B00714A10 /* FoodDetailViewController.swift */,
+				B00DD3262404CE5B00714A10 /* FoodDetailViewController.xib */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		B025526623FE648100D118C0 /* Country Detail */ = {
 			isa = PBXGroup;
 			children = (
-				B025526723FE649700D118C0 /* CountryDetailViewController.swift */,
-				B025526823FE649700D118C0 /* CountryDetailViewController.xib */,
+				B00DD3112404BDC500714A10 /* CountryDetailViewController.swift */,
+				B00DD3102404BDC500714A10 /* CountryDetailViewController.xib */,
+				B00DD3122404BDC500714A10 /* CountryDetailViewModel.swift */,
 			);
 			path = "Country Detail";
 			sourceTree = "<group>";
@@ -296,8 +314,9 @@
 		EC0105431E8F8ADF00CE013D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B00DD3242404CE4200714A10 /* Detail */,
+				B00DD3162404BDD200714A10 /* Cell */,
 				B025526623FE648100D118C0 /* Country Detail */,
-				B025526123FE63E500D118C0 /* Food List */,
 				B0B5902A23FBD34E00EEE1AC /* Search */,
 				B0B5902923FBD34900EEE1AC /* Home */,
 				B0B5902823FBD34300EEE1AC /* Favorite */,
@@ -399,6 +418,7 @@
 				B0B5901E23FBD2DE00EEE1AC /* Country.swift */,
 				B0B5904423FBDB2400EEE1AC /* Category.swift */,
 				B0B5904623FBDCB400EEE1AC /* Networking.swift */,
+				B00DD3222404BE2E00714A10 /* Food.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -545,13 +565,14 @@
 			files = (
 				EC5337BA1EF78E4D00ACE038 /* Localizable.strings in Resources */,
 				B0B5903D23FBD3E100EEE1AC /* CategoryCollectionViewCell.xib in Resources */,
-				B025526A23FE649700D118C0 /* CountryDetailViewController.xib in Resources */,
+				B00DD3132404BDC500714A10 /* CountryDetailViewController.xib in Resources */,
+				B00DD3282404CE5B00714A10 /* FoodDetailViewController.xib in Resources */,
 				B0B5902323FBD30200EEE1AC /* Assets.xcassets in Resources */,
 				B0B5902E23FBD35600EEE1AC /* FavoriteViewController.xib in Resources */,
 				B0B5903123FBD3A900EEE1AC /* SearchViewController.xib in Resources */,
 				F1C6352C1EF141F300D0A1A0 /* LaunchScreen.storyboard in Resources */,
 				B0B5903C23FBD3E100EEE1AC /* CountryCollectionViewCell.xib in Resources */,
-				B025526523FE640B00D118C0 /* FoodListViewController.xib in Resources */,
+				B00DD3192404BDE000714A10 /* CustomCollectionViewCell.xib in Resources */,
 				B0B5904023FBD3E100EEE1AC /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -664,12 +685,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B00DD3232404BE2E00714A10 /* Food.swift in Sources */,
 				EC5337C11EF7939C00ACE038 /* TableCell.swift in Sources */,
 				B0B5902723FBD32200EEE1AC /* NavigationController.swift in Sources */,
 				ECF23AC31E9B9264008C23C1 /* StringExt.swift in Sources */,
-				B025526423FE640B00D118C0 /* FoodListViewController.swift in Sources */,
 				B0B5904523FBDB2400EEE1AC /* Category.swift in Sources */,
 				B069D9CC2403B5CB000B1C22 /* CountryCollectionView.swift in Sources */,
+				B00DD3142404BDC500714A10 /* CountryDetailViewController.swift in Sources */,
 				F537DDD623979E8A00638CB4 /* NSErrorExt.swift in Sources */,
 				B0B5903B23FBD3E100EEE1AC /* CategoryCollectionViewCell.swift in Sources */,
 				B0B5904123FBD3E100EEE1AC /* HomeViewController.swift in Sources */,
@@ -683,13 +705,14 @@
 				B0B5902023FBD2DE00EEE1AC /* Country.swift in Sources */,
 				ECC5B2CB1EF90495001A97BC /* Button.swift in Sources */,
 				EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */,
-				B025526923FE649700D118C0 /* CountryDetailViewController.swift in Sources */,
 				F537DDD0239794BF00638CB4 /* URL.swift in Sources */,
 				EC332A481EA0A8CB0011DF1E /* Api.swift in Sources */,
 				B0B5904723FBDCB400EEE1AC /* Networking.swift in Sources */,
 				B0B5902D23FBD35600EEE1AC /* FavoriteViewController.swift in Sources */,
 				ECD1C29B1EA725B1000EC989 /* InputViewExt.swift in Sources */,
+				B00DD31A2404BDE000714A10 /* CustomCollectionViewCell.swift in Sources */,
 				B0B5903F23FBD3E100EEE1AC /* HomeViewModel .swift in Sources */,
+				B00DD3272404CE5B00714A10 /* FoodDetailViewController.swift in Sources */,
 				F537DDD22397969900638CB4 /* NSDataExt.swift in Sources */,
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
 				ECEC0C5A1ED44D4100F6760A /* UIViewControllerExt.swift in Sources */,
@@ -700,6 +723,7 @@
 				ECF23ABE1E9B8A6A008C23C1 /* Error.swift in Sources */,
 				EC5337B51EF7845700ACE038 /* Color.swift in Sources */,
 				F537DDD423979E2700638CB4 /* DictionaryExt.swift in Sources */,
+				B00DD3152404BDC500714A10 /* CountryDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

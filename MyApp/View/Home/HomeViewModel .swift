@@ -17,7 +17,7 @@ final class HomeViewModel: ViewModel {
 
     // MARK: - Properties
     let countryNames: [String] = ["American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Irish", "Italian", "Jamaican", "Japanese", "Kenyan", "Malaysian", "Mexican", "Moroccan", "Russian", "Spanish", "Thai", "Tunisian", "Turkish", "Unknown", "Vietnamese"]
-    private var countries: [Country] = []
+    var countries: [Country] = []
     private var categories: [Category] = []
 
 
@@ -30,7 +30,7 @@ final class HomeViewModel: ViewModel {
             } else {
                 if let data = data {
                     let json = data.toJSObject()
-                    let jsCategories = json["categories"] as? [JSON] ?? []
+                    let jsCategories = json["categories"] as? JSONArray ?? []
                     for item in jsCategories {
                         let category = Category(json: item)
                         self.categories.append(category)
@@ -52,7 +52,7 @@ final class HomeViewModel: ViewModel {
             } else {
                 if let data = data {
                     let json = data.toJSObject()
-                    let meals = json["meals"] as? [JSON] ?? []
+                    let meals = json["meals"] as? JSONArray ?? []
 
                     for item in meals {
                         let country = Country(json: item)

@@ -13,7 +13,7 @@ final class Country {
     var name: String = ""
     var ensignImage: UIImage? = nil
     
-    init(json: JSON = [:], ensignImage: UIImage? = nil) {
+    init(json: JSONObject = [:], ensignImage: UIImage? = nil) {
         name = json["strArea"] as? String ?? ""
         self.ensignImage = ensignImage
     }

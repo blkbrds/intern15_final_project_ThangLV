@@ -8,13 +8,14 @@
 
 import Foundation
 
-typealias JSON = [String: Any]
+typealias JSONObject = [String: Any]
+typealias JSONArray = [JSONObject]
 
 extension Data {
-    func toJSObject() -> JSON {
+    func toJSObject() -> JSONObject {
         var json: [String: Any] = [:]
         do {
-            if let jsonObj = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? JSON {
+            if let jsonObj = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? JSONObject {
                 json = jsonObj
             }
         } catch {

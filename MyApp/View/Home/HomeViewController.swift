@@ -8,32 +8,23 @@
 
 import UIKit
 
-// MARK: - Struct
-struct Config {
-    static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
-    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 30, height: UIScreen.main.bounds.width / 2)
-    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 9, height: UIScreen.main.bounds.height / 9)
-}
-
-//MARK: - Enum
-enum ViewTypeStatus {
-    case tableType
-    case collectionType
-
-    var itemSize: CGSize {
-        switch self {
-        case .tableType:
-            return Config.tableTypeItemSize
-        case .collectionType:
-            return Config.collectionTypeItemSize
-        }
-    }
-}
-
-
 @available(iOS 11.0, *)
 final class HomeViewController: ViewController {
+    
+    //MARK: - Enum
+    enum ViewTypeStatus {
+        case tableType
+        case collectionType
+
+        var itemSize: CGSize {
+            switch self {
+            case .tableType:
+                return Config.tableTypeItemSize
+            case .collectionType:
+                return Config.collectionTypeItemSize
+            }
+        }
+    }
 
     // MARK: - IBOutlets
     @IBOutlet private weak var countryCollectionView: CountryCollectionView!
@@ -143,9 +134,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case countryCollectionView:
             let countryDetailViewController = CountryDetailViewController()
             navigationController?.pushViewController(countryDetailViewController, animated: true)
-        case categoryCollectionView:
-            let foodListViewController = FoodListViewController()
-            navigationController?.pushViewController(foodListViewController, animated: true)
+            countryDetailViewController.getCountryName(countryName: viewModel.countryName(at: indexPath))
         default:
             print("Error.")
         }
@@ -160,4 +149,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         }
         return Config.countryCollectionViewItemSize
     }
+}
+
+// MARK: - Struct
+struct Config {
+    static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
+    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 20, height: UIScreen.main.bounds.width / 2 - 20)
+    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 9, height: UIScreen.main.bounds.height / 9)
 }

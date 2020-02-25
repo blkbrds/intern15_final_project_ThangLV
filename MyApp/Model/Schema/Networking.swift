@@ -31,7 +31,7 @@ final class Networking {
             return
         }
         
-        let config = URLSessionConfiguration.ephemeral
+        let config = URLSessionConfiguration.default
         config.waitsForConnectivity = true
         
         let session = URLSession(configuration: config)

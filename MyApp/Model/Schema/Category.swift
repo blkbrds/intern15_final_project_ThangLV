@@ -30,7 +30,7 @@ final class Category {
     var categoryDescription: String
     var categoryImage: UIImage?
     
-    init(json: JSON) {
+    init(json: JSONObject) {
         idCategory = json["idCategory"] as? String ?? ""
         categoryName = json["strCategory"] as? String ?? ""
         categoryThumb = json["strCategoryThumb"] as? String ?? ""
