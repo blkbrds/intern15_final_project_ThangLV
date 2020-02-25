@@ -12,6 +12,8 @@
 		B025526523FE640B00D118C0 /* FoodListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B025526323FE640B00D118C0 /* FoodListViewController.xib */; };
 		B025526923FE649700D118C0 /* CountryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B025526723FE649700D118C0 /* CountryDetailViewController.swift */; };
 		B025526A23FE649700D118C0 /* CountryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B025526823FE649700D118C0 /* CountryDetailViewController.xib */; };
+		B069D9CC2403B5CB000B1C22 /* CountryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069D9CB2403B5CB000B1C22 /* CountryCollectionView.swift */; };
+		B069D9CE2403B6FC000B1C22 /* CategoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B069D9CD2403B6FC000B1C22 /* CategoryCollectionView.swift */; };
 		B0B5902023FBD2DE00EEE1AC /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5901E23FBD2DE00EEE1AC /* Country.swift */; };
 		B0B5902323FBD30200EEE1AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B5902223FBD30200EEE1AC /* Assets.xcassets */; };
 		B0B5902623FBD32200EEE1AC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5902423FBD32200EEE1AC /* TabBarController.swift */; };
@@ -93,6 +95,8 @@
 		B025526323FE640B00D118C0 /* FoodListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodListViewController.xib; sourceTree = "<group>"; };
 		B025526723FE649700D118C0 /* CountryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewController.swift; sourceTree = "<group>"; };
 		B025526823FE649700D118C0 /* CountryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailViewController.xib; sourceTree = "<group>"; };
+		B069D9CB2403B5CB000B1C22 /* CountryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionView.swift; sourceTree = "<group>"; };
+		B069D9CD2403B6FC000B1C22 /* CategoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionView.swift; sourceTree = "<group>"; };
 		B0B5901E23FBD2DE00EEE1AC /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		B0B5902223FBD30200EEE1AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0B5902423FBD32200EEE1AC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				B0B5903A23FBD3E100EEE1AC /* HomeViewController.swift */,
 				B0B5903923FBD3E100EEE1AC /* HomeViewController.xib */,
 				B0B5903823FBD3E100EEE1AC /* HomeViewModel .swift */,
+				B069D9CB2403B5CB000B1C22 /* CountryCollectionView.swift */,
+				B069D9CD2403B6FC000B1C22 /* CategoryCollectionView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -663,6 +669,7 @@
 				ECF23AC31E9B9264008C23C1 /* StringExt.swift in Sources */,
 				B025526423FE640B00D118C0 /* FoodListViewController.swift in Sources */,
 				B0B5904523FBDB2400EEE1AC /* Category.swift in Sources */,
+				B069D9CC2403B5CB000B1C22 /* CountryCollectionView.swift in Sources */,
 				F537DDD623979E8A00638CB4 /* NSErrorExt.swift in Sources */,
 				B0B5903B23FBD3E100EEE1AC /* CategoryCollectionViewCell.swift in Sources */,
 				B0B5904123FBD3E100EEE1AC /* HomeViewController.swift in Sources */,
@@ -689,6 +696,7 @@
 				ECEC0C581ED44C5D00F6760A /* String.swift in Sources */,
 				B0B5904323FBD48D00EEE1AC /* Data.Ext.swift in Sources */,
 				EC5337BE1EF78FEA00ACE038 /* Font.swift in Sources */,
+				B069D9CE2403B6FC000B1C22 /* CategoryCollectionView.swift in Sources */,
 				ECF23ABE1E9B8A6A008C23C1 /* Error.swift in Sources */,
 				EC5337B51EF7845700ACE038 /* Color.swift in Sources */,
 				F537DDD423979E2700638CB4 /* DictionaryExt.swift in Sources */,

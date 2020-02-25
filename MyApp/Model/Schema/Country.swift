@@ -11,13 +11,10 @@ import UIKit
 
 final class Country {
     var name: String = ""
-    var image: UIImage? = nil
+    var ensignImage: UIImage? = nil
     
-    init(json: JSON) {
+    init(json: JSON = [:], ensignImage: UIImage? = nil) {
         name = json["strArea"] as? String ?? ""
-    }
-    
-    init(image: UIImage? = nil) {
-        self.image = image
+        self.ensignImage = ensignImage
     }
 }
