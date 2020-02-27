@@ -7,48 +7,35 @@
 //
 
 import Foundation
+import MVVM
+
+typealias Success = (Bool, String) -> Void
 
 @available(iOS 11.0, *)
-final class CountryDetailViewModel {
+final class CountryDetailViewModel: ViewModel {
     var foods: [Food] = []
     var countryName: String = ""
-    
-    func loadAPI(completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/filter.php?a=\(countryName)"
-        
-        Networking.shared().request(with: urlString) { (data, error) in
-            if let error = error {
-                completion(false, error.localizedDescription)
-            } else {
-                if let data = data {
-                    let json = data.toJSObject()
-                    let meals = json["meals"] as? JSONArray ?? []
-                    
-                    for item in meals {
-                        let food = Food(json: item)
-                        self.foods.append(food)
-                    }
-                    completion(true, "")
-                } else {
-                    completion(false, "Data format is error")
+
+    func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
+        CountryDetailService.loadFoods(at: countryName) { (result) in
+            switch result {
+            case .success(let foods):
+                if let foods = foods as? [Food] {
+                    self.foods = foods
+                    success(true, foods[indexPath?.row ?? 0].imageUrl)
                 }
+            case .failure(let message):
+                print(message)
             }
         }
     }
-    
-    func loadImage(at indexPath: IndexPath, completion: @escaping (Bool, String) -> Void) {
-        let food = foods[indexPath.row]
-        Networking.shared().downloadImage(url: food.imageUrl) { (image) in
-            if let image = image {
-                self.foods[indexPath.row].foodImage = image
-                completion(true, "")
-            } else {
-                completion(false, "")
-            }
-        }
-    }
-    
+
     func numberOfItemsInSection() -> Int {
         return foods.count
+    }
+    
+    func viewModelForItem(at indexPath: IndexPath) -> CustomCollectionCellViewModel {
+        let foodName = foods[indexPath.row].foodName
+        return CustomCollectionCellViewModel(foodName: foodName)
     }
 }

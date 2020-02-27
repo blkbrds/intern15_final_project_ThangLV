@@ -14,13 +14,19 @@ final class CountryCollectionViewCell: CollectionCell {
     @IBOutlet weak var countryImageView: UIImageView!
     @IBOutlet private weak var countryNameLabel: UILabel!
     
+    var viewModel = CountryCollectionCellViewModel() {
+        didSet {
+            updateView()
+        }
+    }
+    
     // MARK: - Override functions
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func configData(name: String, image: UIImage) {
-        countryNameLabel.text = name
-        countryImageView.image = image
+    private func updateView() {
+        countryNameLabel.text = viewModel.countryName
+        countryImageView.image = UIImage(named: viewModel.countryName)
     }
 }

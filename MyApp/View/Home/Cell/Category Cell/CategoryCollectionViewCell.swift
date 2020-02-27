@@ -11,9 +11,15 @@ import UIKit
 final class CategoryCollectionViewCell: CollectionCell {
 
     // MARK: - IBOutlets
-    @IBOutlet private weak var categoryImageView: UIImageView!
+    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet private weak var categoryNameLabel: UILabel!
     @IBOutlet private weak var categoryDescriptionLabel: UILabel!
+
+    var viewModel = CategoryCollectionCellViewModel() {
+        didSet {
+            updateView()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +35,12 @@ final class CategoryCollectionViewCell: CollectionCell {
         categoryImageView.layer.cornerRadius = 10
         categoryImageView.clipsToBounds = true
     }
-
+    
+    private func updateView() {
+        categoryNameLabel.text = viewModel.categoryName
+        categoryDescriptionLabel.text = viewModel.categoryDescription
+    }
+    
     func updateData(category: Category? = nil, image: UIImage? = nil) {
         if let category = category {
             categoryNameLabel.text = category.categoryName
@@ -37,5 +48,9 @@ final class CategoryCollectionViewCell: CollectionCell {
         } else {
             categoryImageView.image = image
         }
+    }
+    
+    func loadImage() -> UIImageView {
+        return categoryImageView
     }
 }

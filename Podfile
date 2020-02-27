@@ -8,6 +8,8 @@ workspace 'MyApp.xcworkspace'
 
 target 'MyApp' do
     project 'MyApp'
+    
+    pod 'SDWebImage/WebP'
 
     # Architect
     pod 'MVVM-Swift' # MVVM Architect for iOS Application.

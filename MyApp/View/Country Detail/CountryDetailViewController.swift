@@ -27,9 +27,11 @@ class CountryDetailViewController: ViewController {
     }
     
     override func setupData() {
-        viewModel.loadAPI { (done, error) in
+        viewModel.getFoods() { (done, _) in
             if done {
                 self.collectionView.reloadData()
+            } else {
+                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
@@ -41,7 +43,7 @@ class CountryDetailViewController: ViewController {
         collectionView.delegate = self
     }
     
-    func getCountryName(countryName: String) {
+    func transferCountryName(countryName: String) {
         viewModel.countryName = countryName
         title = "\(countryName.uppercased()) FOODS"
     }
@@ -55,11 +57,13 @@ extension CountryDetailViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
-        let item = viewModel.foods[indexPath.row]
-        cell?.configData(foodName: item.foodName)
-        viewModel.loadImage(at: indexPath) { [weak self] (done, error) in
+        cell?.viewModel = viewModel.viewModelForItem(at: indexPath)
+
+        viewModel.getFoods(at: indexPath) { (done, url) in
             if done {
-                cell?.configData(foodName: item.foodName,foodImage: item.foodImage ?? UIImage())
+                cell?.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
+            } else {
+                print("Cannot load images")
             }
         }
         return cell ?? UICollectionViewCell()
