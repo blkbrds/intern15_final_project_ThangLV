@@ -10,6 +10,12 @@ import Foundation
 
 typealias JSObject = [String: Any]
 typealias JSArray = [JSObject]
+typealias Completion = (Result) -> Void
+
+enum Result {
+    case success(Any?)
+    case failure(String)
+}
 
 let api = ApiManager()
 

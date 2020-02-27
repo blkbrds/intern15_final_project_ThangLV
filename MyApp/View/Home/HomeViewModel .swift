@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import MVVM
 
-typealias Completion = (Bool, String) -> Void
-
 @available(iOS 11.0, *)
 final class HomeViewModel: ViewModel {
 
@@ -20,53 +18,34 @@ final class HomeViewModel: ViewModel {
     var countries: [Country] = []
     private var categories: [Category] = []
 
-
-    //MARK: - Load API functions
-    func loadAPI(completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/categories.php"
-        Networking.shared().request(with: urlString) { (data, error) in
-            if let error = error {
-                completion(false, error.localizedDescription)
-            } else {
-                if let data = data {
-                    let json = data.toJSObject()
-                    let jsCategories = json["categories"] as? JSONArray ?? []
-                    for item in jsCategories {
-                        let category = Category(json: item)
-                        self.categories.append(category)
-
-                        completion(true, "")
-                    }
-                } else {
-                    completion(false, "Data format is error.")
+    func getCategories(at indexPath: IndexPath? = nil, success: @escaping Success) {
+        HomeService.loadCategories() { result in
+            switch result {
+            case .success(let categories):
+                if let categories = categories as? [Category] {
+                    self.categories = categories
+                    success(true, categories[indexPath?.row ?? 0].categoryThumb)
                 }
+            case .failure(let message):
+                print(message)
             }
         }
     }
 
-    func loadAPI2(completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
-        Networking.shared().request(with: urlString) { (data, error) in
-            if let error = error {
-                completion(false, error.localizedDescription)
-            } else {
-                if let data = data {
-                    let json = data.toJSObject()
-                    let meals = json["meals"] as? JSONArray ?? []
-
-                    for item in meals {
-                        let country = Country(json: item)
-                        self.countries.append(country)
-
-                        completion(true, "")
-                    }
-                } else {
-                    completion(false, "Data format is error.")
+    func getCountries(at indexPath: IndexPath? = nil, success: @escaping Success) {
+        HomeService.loadCountries() { result in
+            switch result {
+            case .success(let countries):
+                if let countries = countries as? [Country] {
+                    self.countries = countries
+                    success(true, "")
                 }
+            case .failure(let message):
+                print(message)
             }
         }
     }
-    
+
     func numberOfItems(isCountry: Bool, inSection section: Int) -> Int {
         if isCountry {
             return countries.count
@@ -74,20 +53,37 @@ final class HomeViewModel: ViewModel {
             return categories.count
         }
     }
-    
+
     func countryName(at indexPath: IndexPath) -> String {
         return countries[indexPath.row].name
     }
-    
-    func categoryName(at indexPath: IndexPath) -> Category {
-        return categories[indexPath.row]
+
+    func categoryName(at indexPath: IndexPath) -> String {
+        return categories[indexPath.row].categoryName
     }
-    
+
     func categoryThumb(at indexPath: IndexPath) -> String {
         return categories[indexPath.row].categoryThumb
     }
-    
+
     func categoryImage(at indexPath: IndexPath) -> UIImage {
         return categories[indexPath.row].categoryImage ?? UIImage()
     }
+    
+    func viewModelForItem(at indexPath: IndexPath) -> CountryCollectionCellViewModel {
+        let countryName = countries[indexPath.row].name
+        return CountryCollectionCellViewModel(countryName: countryName)
+    }
+    
+    func viewModelForItem(at indexPath: IndexPath) -> CategoryCollectionCellViewModel {
+        let categoryName = categories[indexPath.row].categoryName
+        let categoryDescription = categories[indexPath.row].categoryDescription
+        
+        return CategoryCollectionCellViewModel(categoryName: categoryName, categoryDescription: categoryDescription)
+    }
 }
+
+
+
+
+

@@ -12,6 +12,7 @@ import UIKit
 final class Country {
     var name: String = ""
     var ensignImage: UIImage? = nil
+    var ensignImageUrl: String = ""
     
     init(json: JSONObject = [:], ensignImage: UIImage? = nil) {
         name = json["strArea"] as? String ?? ""

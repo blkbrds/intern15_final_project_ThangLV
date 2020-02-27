@@ -10,15 +10,26 @@ import UIKit
 
 class CustomCollectionViewCell: CollectionCell {
 
-    @IBOutlet weak var foodImageView: UIImageView!
-    @IBOutlet weak var foodNameLabel: UILabel!
+    @IBOutlet private weak var foodImageView: UIImageView!
+    @IBOutlet private weak var foodNameLabel: UILabel!
     
     override func awakeFromNib() {
-        super.awakeFromNib()
+        layer.masksToBounds = false
+        layer.cornerRadius = 5
+        clipsToBounds = true
     }
     
-    func configData(foodName: String? = nil, foodImage: UIImage? = nil) {
-        foodNameLabel.text = foodName
-        foodImageView.image = foodImage
+    var viewModel = CustomCollectionCellViewModel() {
+        didSet {
+            updateView()
+        }
+    }
+    
+    private func updateView() {
+        foodNameLabel.text = viewModel.foodName
+    }
+    
+    func loadImage() -> UIImageView {
+        return foodImageView
     }
 }

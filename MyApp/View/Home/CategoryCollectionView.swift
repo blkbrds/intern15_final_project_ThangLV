@@ -9,13 +9,16 @@
 import UIKit
 
 class CategoryCollectionView: UICollectionView {
+    
+    private let categoryCollectionViewCell = "CategoryCollectionViewCell"
+    
     override func awakeFromNib() {
         configCategoryCollectionView()
     }
     
     private func configCategoryCollectionView() {
-        let categoryCollectionViewCellNib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
-        register(categoryCollectionViewCellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        let categoryCollectionViewCellNib = UINib(nibName: categoryCollectionViewCell, bundle: nil)
+        register(categoryCollectionViewCellNib, forCellWithReuseIdentifier: categoryCollectionViewCell)
     }
 }
 
