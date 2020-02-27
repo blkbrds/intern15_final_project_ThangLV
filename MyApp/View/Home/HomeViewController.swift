@@ -135,6 +135,10 @@ extension HomeViewController: UICollectionViewDataSource {
             let countryDetailViewController = CountryDetailViewController()
             navigationController?.pushViewController(countryDetailViewController, animated: true)
             countryDetailViewController.transferCountryName(countryName: viewModel.countryName(at: indexPath))
+        case categoryCollectionView:
+            let foodListViewController = FoodListViewController()
+            navigationController?.pushViewController(foodListViewController, animated: true)
+            foodListViewController.transferCategoryName(foodCategory: viewModel.categoryName(at: indexPath))
         default:
             print("Error.")
         }

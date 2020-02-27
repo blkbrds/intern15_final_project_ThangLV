@@ -23,6 +23,9 @@ final class CountryCollectionViewCell: CollectionCell {
     // MARK: - Override functions
     override func awakeFromNib() {
         super.awakeFromNib()
+        layer.masksToBounds = false
+        layer.cornerRadius = 5
+        clipsToBounds = true
     }
     
     private func updateView() {

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6C392FC5AF0C61509011C30D /* Pods_MyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E8000CCB9AE328B83764288 /* Pods_MyApp.framework */; };
+		B0012F9024079F5200540518 /* FoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0012F8D24079F5200540518 /* FoodListViewController.swift */; };
+		B0012F9124079F5200540518 /* FoodListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0012F8E24079F5200540518 /* FoodListViewController.xib */; };
+		B0012F9224079F5200540518 /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0012F8F24079F5200540518 /* FoodListViewModel.swift */; };
+		B0012F9424079F7100540518 /* FoodListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0012F9324079F7100540518 /* FoodListService.swift */; };
 		B00DD3272404CE5B00714A10 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DD3252404CE5B00714A10 /* FoodDetailViewController.swift */; };
 		B00DD3282404CE5B00714A10 /* FoodDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00DD3262404CE5B00714A10 /* FoodDetailViewController.xib */; };
 		B04695F5240760650050958F /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04695F2240760650050958F /* HomeService.swift */; };
@@ -122,6 +126,10 @@
 		47FCF93A9948D710C06CECAF /* Pods-MyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyApp/Pods-MyApp.release.xcconfig"; sourceTree = "<group>"; };
 		48F8D478234569385F88AC15 /* Pods-MyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyApp/Pods-MyApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7E8000CCB9AE328B83764288 /* Pods_MyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0012F8D24079F5200540518 /* FoodListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListViewController.swift; sourceTree = "<group>"; };
+		B0012F8E24079F5200540518 /* FoodListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FoodListViewController.xib; sourceTree = "<group>"; };
+		B0012F8F24079F5200540518 /* FoodListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
+		B0012F9324079F7100540518 /* FoodListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodListService.swift; sourceTree = "<group>"; };
 		B00DD3252404CE5B00714A10 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
 		B00DD3262404CE5B00714A10 /* FoodDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodDetailViewController.xib; sourceTree = "<group>"; };
 		B04695F2240760650050958F /* HomeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
@@ -225,6 +233,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B0012F8824079F3F00540518 /* Food List */ = {
+			isa = PBXGroup;
+			children = (
+				B0012F8D24079F5200540518 /* FoodListViewController.swift */,
+				B0012F8E24079F5200540518 /* FoodListViewController.xib */,
+				B0012F8F24079F5200540518 /* FoodListViewModel.swift */,
+			);
+			path = "Food List";
+			sourceTree = "<group>";
+		};
 		B00DD3162404BDD200714A10 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +337,7 @@
 			children = (
 				B04695F3240760650050958F /* CountryDetailService.swift */,
 				B04695F2240760650050958F /* HomeService.swift */,
+				B0012F9324079F7100540518 /* FoodListService.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -389,6 +408,7 @@
 		EC0105431E8F8ADF00CE013D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B0012F8824079F3F00540518 /* Food List */,
 				B00DD3242404CE4200714A10 /* Detail */,
 				B00DD3162404BDD200714A10 /* Cell */,
 				B025526623FE648100D118C0 /* Country Detail */,
@@ -679,6 +699,7 @@
 				B0469613240760EB0050958F /* CustomCollectionViewCell.xib in Resources */,
 				B046961F2407611F0050958F /* HomeViewController.xib in Resources */,
 				B0469631240761580050958F /* CategoryCollectionViewCell.xib in Resources */,
+				B0012F9124079F5200540518 /* FoodListViewController.xib in Resources */,
 				B046962C240761500050958F /* CountryCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,6 +826,7 @@
 				B04695F6240760650050958F /* CountryDetailService.swift in Sources */,
 				B04695FB240760950050958F /* Country.swift in Sources */,
 				B0469624240761250050958F /* CategoryCollectionView.swift in Sources */,
+				B0012F9024079F5200540518 /* FoodListViewController.swift in Sources */,
 				B046960C240760CC0050958F /* Data.Ext.swift in Sources */,
 				B04696202407611F0050958F /* HomeViewModel .swift in Sources */,
 				B046960A240760CC0050958F /* DictionaryExt.swift in Sources */,
@@ -828,11 +850,13 @@
 				B04695FC240760950050958F /* Networking.swift in Sources */,
 				B0469612240760EB0050958F /* CustomCollectionCellViewModel.swift in Sources */,
 				B00DD3272404CE5B00714A10 /* FoodDetailViewController.swift in Sources */,
+				B0012F9224079F5200540518 /* FoodListViewModel.swift in Sources */,
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
 				B0469632240761580050958F /* CategoryCollectionViewCell.swift in Sources */,
 				B046961A240761020050958F /* CountryDetailViewController.swift in Sources */,
 				B04695FE240760950050958F /* Food.swift in Sources */,
 				ECEC0C581ED44C5D00F6760A /* String.swift in Sources */,
+				B0012F9424079F7100540518 /* FoodListService.swift in Sources */,
 				B0469607240760CC0050958F /* NSErrorExt.swift in Sources */,
 				B04695F5240760650050958F /* HomeService.swift in Sources */,
 				B04696222407611F0050958F /* CountryCollectionView.swift in Sources */,
