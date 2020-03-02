@@ -1,5 +1,5 @@
 //
-//  CountryDetailViewController.swift
+//  FoodListViewController.swift
 //  MyApp
 //
 //  Created by PCI0008 on 2/20/20.
@@ -9,16 +9,16 @@
 import UIKit
 
 @available(iOS 11.0, *)
-final class CountryDetailViewController: ViewController {
+final class FoodListViewController: ViewController {
     
-    // MARK: - IBOutlet
+    // MARK; IBOutlet
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    // MARK: - Private properties
-    private let countryCollectionViewCell = "CustomCollectionViewCell"
-    private let viewModel = CountryDetailViewModel()
+    // MARK: - Private functions
+    private let foodListCollectionViewCell = "FoodListCollectionViewCell"
+    private let viewModel = FoodListViewModel()
     
-    // MARK: Override functions
+    // MARK: - Overrride functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -41,27 +41,27 @@ final class CountryDetailViewController: ViewController {
     
     // MARK: - Private functions
     private func configCollectionView() {
-        let countryCollectionCellNib = UINib(nibName: countryCollectionViewCell, bundle: nil)
-        collectionView.register(countryCollectionCellNib, forCellWithReuseIdentifier: countryCollectionViewCell)
+        let foodListCellNib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
+        collectionView.register(foodListCellNib, forCellWithReuseIdentifier: foodListCollectionViewCell)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
     
-    func transferCountryName(countryName: String) {
-        viewModel.countryName = countryName
-        title = "\(countryName.uppercased()) FOODS"
+    func transferCategoryName(foodCategory: String) {
+        viewModel.foodCategory = foodCategory
+        title = foodCategory.uppercased()
     }
 }
 
 // MARK: - Extensions
 @available(iOS 11.0, *)
-extension CountryDetailViewController: UICollectionViewDataSource {
+extension FoodListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection()
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: foodListCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
         cell?.viewModel = viewModel.viewModelForItem(at: indexPath)
         return cell ?? UICollectionViewCell()
     }
@@ -74,14 +74,12 @@ extension CountryDetailViewController: UICollectionViewDataSource {
 }
 
 @available(iOS 11.0, *)
-extension CountryDetailViewController: UICollectionViewDelegateFlowLayout {
+extension FoodListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return Config.countryDetailCollectionViewItemSize
+        return Config.foodListCollectionViewItemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Config.countryDetailCollectionViewSectionInset
+        return Config.foodListCollectionViewSectionInset
     }
 }
-
-

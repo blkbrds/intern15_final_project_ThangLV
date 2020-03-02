@@ -9,19 +9,30 @@
 import Foundation
 import UIKit
 
+import Foundation
+import UIKit
+
 final class Food {
     var foodImage: UIImage?
     var foodName: String
     var categoryName: String
     var countryName: String
     var cookingInstruction: String
-    var imageUrl: String
-    
+    var imageURL: String
+    var ingredients: [String] = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var measures: [String] = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+
     init(json: JSONObject) {
         foodName = json["strMeal"] as? String ?? ""
         categoryName = json["strCategory"] as? String ?? ""
         countryName = json["strArea"] as? String ?? ""
         cookingInstruction = json["strInstructions"] as? String ?? ""
-        imageUrl = json["strMealThumb"] as? String ?? ""
+        imageURL = json["strMealThumb"] as? String ?? ""
+        for i in 0...19 {
+            ingredients[i] = json["strIngredient\(i + 1)"] as? String ?? ""
+        }
+        for j in 0...19 {
+            measures[j] = json["strMeasure\(j + 1)"] as? String ?? ""
+        }
     }
 }

@@ -10,9 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountryDetailViewController" customModule="MyApp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FoodListViewController" customModule="MyApp" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="1Os-Tu-Hq5" id="Yle-J3-6nl"/>
+                <outlet property="collectionView" destination="JIw-CU-TOj" id="yve-5O-6Be"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,10 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1Os-Tu-Hq5">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="JIw-CU-TOj">
+                    <rect key="frame" x="8" y="28" width="359" height="631"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5tG-wC-mV3">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uLj-XW-7oR">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -34,13 +34,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="1Os-Tu-Hq5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="0bH-kI-8w1"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1Os-Tu-Hq5" secondAttribute="bottom" id="LOG-Qg-jwX"/>
-                <constraint firstItem="1Os-Tu-Hq5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="j02-Ni-84W"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1Os-Tu-Hq5" secondAttribute="trailing" id="vg5-Et-Jpk"/>
+                <constraint firstItem="JIw-CU-TOj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="6cy-cJ-0JU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JIw-CU-TOj" secondAttribute="trailing" constant="8" id="DxF-Ph-Oyd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JIw-CU-TOj" secondAttribute="bottom" constant="8" id="MkC-fv-6iJ"/>
+                <constraint firstItem="JIw-CU-TOj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="adC-xu-1Jc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="135" y="155"/>
         </view>
     </objects>
 </document>

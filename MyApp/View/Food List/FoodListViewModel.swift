@@ -1,24 +1,22 @@
 //
-//  CountryDetailViewModel.swift
+//  FoodListViewModel.swift
 //  MyApp
 //
-//  Created by Chinh Le on 2/23/20.
+//  Created by Chinh Le on 2/22/20.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
 import Foundation
 
-typealias Success = (Bool, String) -> Void
-
 @available(iOS 11.0, *)
-final class CountryDetailViewModel {
+final class FoodListViewModel {
     // MARK: - Properties
     var foods: [Food] = []
-    var countryName: String = ""
+    var foodCategory: String = ""
     
     // MARK: - Functions
     func getFoods(success: @escaping Success) {
-        CountryDetailService.loadFoods(at: countryName) { (result) in
+        FoodListService.loadFoods(at: foodCategory) { (result) in
             switch result {
             case .success(let foods):
                 if let foods = foods as? [Food] {
@@ -30,7 +28,7 @@ final class CountryDetailViewModel {
             }
         }
     }
-
+    
     func numberOfItemsInSection() -> Int {
         return foods.count
     }

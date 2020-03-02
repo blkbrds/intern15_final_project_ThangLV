@@ -7,14 +7,18 @@
 //
 
 import UIKit
-import MVVM
 
-class ViewController: UIViewController, MVVM.View {
+class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupData()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Symbol", size: 20) as Any]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.tintColor = UIColor.red
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func setupUI() { }
