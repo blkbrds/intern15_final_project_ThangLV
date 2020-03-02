@@ -21,11 +21,9 @@ final class CountryCollectionViewCell: CollectionCell {
     }
     
     // MARK: - Override functions
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        layer.masksToBounds = false
-        layer.cornerRadius = 5
-        clipsToBounds = true
+    override func draw(_ rect: CGRect) { //Your code should go here.
+        super.draw(rect)
+        self.layer.cornerRadius = self.frame.size.width / 2
     }
     
     private func updateView() {

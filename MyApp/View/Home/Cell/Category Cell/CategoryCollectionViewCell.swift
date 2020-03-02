@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class CategoryCollectionViewCell: CollectionCell {
 
@@ -14,7 +15,8 @@ final class CategoryCollectionViewCell: CollectionCell {
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet private weak var categoryNameLabel: UILabel!
     @IBOutlet private weak var categoryDescriptionLabel: UILabel!
-
+    @IBOutlet weak var infoView: UIView!
+    
     var viewModel = CategoryCollectionCellViewModel() {
         didSet {
             updateView()
@@ -23,22 +25,27 @@ final class CategoryCollectionViewCell: CollectionCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.masksToBounds = false
-        layer.cornerRadius = 10
-        clipsToBounds = true
         configImageView()
+        setupUI()
     }
 
     // MARK: - Private functions
     private func configImageView() {
         categoryImageView.layer.masksToBounds = false
-        categoryImageView.layer.cornerRadius = 10
+        categoryImageView.layer.cornerRadius = 20
         categoryImageView.clipsToBounds = true
     }
     
     private func updateView() {
         categoryNameLabel.text = viewModel.categoryName
         categoryDescriptionLabel.text = viewModel.categoryDescription
+        categoryImageView.sd_setImage(with: URL(string: viewModel.categoryImageURL), placeholderImage: UIImage(named: "placeholder.png"))
+    }
+    
+    private func setupUI() {
+        infoView.layer.masksToBounds = false
+        infoView.layer.cornerRadius = 10
+        infoView.clipsToBounds = true
     }
     
     func updateData(category: Category? = nil, image: UIImage? = nil) {

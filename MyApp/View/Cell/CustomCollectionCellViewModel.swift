@@ -11,8 +11,10 @@ import Foundation
 final class CustomCollectionCellViewModel {
     
     var foodName: String
+    var imageURL: String
     
-    init(foodName: String = "") {
+    init(foodName: String = "", imageURL: String = "") {
         self.foodName = foodName
+        self.imageURL = imageURL
     }
 }

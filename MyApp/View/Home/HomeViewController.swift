@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import SDWebImage
 
 @available(iOS 11.0, *)
 final class HomeViewController: ViewController {
-    
+
     //MARK: - Enum
     enum ViewTypeStatus {
         case tableType
@@ -25,6 +24,15 @@ final class HomeViewController: ViewController {
                 return Config.collectionTypeItemSize
             }
         }
+
+        var insetForSection: UIEdgeInsets {
+            switch self {
+            case .tableType:
+                return Config.tableTypeSectionInset
+            case .collectionType:
+                return Config.collectionTypeSectionInset
+            }
+        }
     }
 
     // MARK: - IBOutlets
@@ -35,10 +43,16 @@ final class HomeViewController: ViewController {
     private let viewModel = HomeViewModel()
     private let categoryCollectionViewCell = "CategoryCollectionViewCell"
     private let countryCollectionViewCell = "CountryCollectionViewCell"
+    private let customCollectionViewCell = "CustomCollectionViewCell"
     private var viewTypeStatus = ViewTypeStatus.tableType
-
+    
     // MARK: Override functions
-  
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupUI()
+        configCustomCollectionView()
+    }
+
     override func setupUI() {
         title = "HOME"
         configNavigationBar()
@@ -47,7 +61,7 @@ final class HomeViewController: ViewController {
         countryCollectionView.dataSource = self
         countryCollectionView.delegate = self
     }
-    
+
     override func setupData() {
         viewModel.getCategories() { (done, error) in
             if done {
@@ -90,6 +104,11 @@ final class HomeViewController: ViewController {
         }
     }
 
+    private func configCustomCollectionView() {
+        let customCollectionViewCellNib = UINib(nibName: customCollectionViewCell, bundle: nil)
+        categoryCollectionView.register(customCollectionViewCellNib, forCellWithReuseIdentifier: customCollectionViewCell)
+    }
+
     @objc private func viewTypeButtonTouchUpInside() {
         changeFlowLayout()
         setViewTypeButtonIcon()
@@ -114,14 +133,13 @@ extension HomeViewController: UICollectionViewDataSource {
                 return countryCollectionCell
             }
         case categoryCollectionView:
-            categoryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
-            viewModel.getCategories(at: indexPath) { (done, url) in
-                if done {
-                    categoryCollectionCell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
-                } else {
-                    print("Cannot load images.")
-                }
+            if viewTypeStatus == .collectionType {
+                let customCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: customCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
+                customCollectionCell?.viewModel = viewModel.viewModelForItem(at: indexPath)
+                customCollectionCell?.nameOfFoodLabel().isHidden = true
+                return customCollectionCell ?? CustomCollectionViewCell()
             }
+            categoryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
         default:
             print("Error")
         }
@@ -135,10 +153,28 @@ extension HomeViewController: UICollectionViewDataSource {
             let countryDetailViewController = CountryDetailViewController()
             navigationController?.pushViewController(countryDetailViewController, animated: true)
             countryDetailViewController.transferCountryName(countryName: viewModel.countryName(at: indexPath))
+            UIView.animate(withDuration: 0.3,
+                animations: {
+                    self.countryCollectionView.transform = CGAffineTransform(scaleX: 0.6, y: 0.4)
+                },
+                completion: { _ in
+                    UIView.animate(withDuration: 0.3) {
+                        self.countryCollectionView.transform = CGAffineTransform.identity
+                    }
+                })
         case categoryCollectionView:
             let foodListViewController = FoodListViewController()
             navigationController?.pushViewController(foodListViewController, animated: true)
             foodListViewController.transferCategoryName(foodCategory: viewModel.categoryName(at: indexPath))
+            UIView.animate(withDuration: 0.3,
+                animations: {
+                    self.categoryCollectionView.transform = CGAffineTransform(scaleX: 0.5, y: 0.8)
+                },
+                completion: { _ in
+                    UIView.animate(withDuration: 0.3) {
+                        self.categoryCollectionView.transform = CGAffineTransform.identity
+                    }
+                })
         default:
             print("Error.")
         }
@@ -153,12 +189,47 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         }
         return Config.countryCollectionViewItemSize
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == countryCollectionView {
+            return Config.countryCollectionViewSectionInset
+        }
+        return viewTypeStatus.insetForSection
+    }
 }
 
-// MARK: - Struct
+@available(iOS 11.0, *)
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case countryCollectionView:
+            cell.alpha = 0
+            cell.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            UIView.animate(withDuration: 0.25) {
+                cell.alpha = 1
+                cell.transform = .identity
+            }
+        case categoryCollectionView:
+            cell.alpha = 0
+            UIView.animate(withDuration: 0.8) {
+                cell.alpha = 1
+            }
+            
+        default:
+            print("Animation does not work!")
+        }
+    }
+}
+
 struct Config {
-    static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
-    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 20, height: UIScreen.main.bounds.width / 2 - 20)
-    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 9, height: UIScreen.main.bounds.height / 9)
+    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 10, height: UIScreen.main.bounds.height / 10)
+    static let countryCollectionViewSectionInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 10, height: UIScreen.main.bounds.width * 1 / 2)
+    static let collectionTypeSectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 130)
+    static let tableTypeSectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+    static let foodListCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 20, height: UIScreen.main.bounds.width / 2 + 40)
+    static let foodListCollectionViewSectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    static let countryDetailCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 15, height: UIScreen.main.bounds.width / 2 + 40)
+    static let countryDetailCollectionViewSectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
 }

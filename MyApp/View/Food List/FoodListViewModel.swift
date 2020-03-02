@@ -7,20 +7,21 @@
 //
 
 import Foundation
-import MVVM
 
 @available(iOS 11.0, *)
-final class FoodListViewModel: ViewModel {
+final class FoodListViewModel {
+    // MARK: - Properties
     var foods: [Food] = []
     var foodCategory: String = ""
     
-    func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
+    // MARK: - Functions
+    func getFoods(success: @escaping Success) {
         FoodListService.loadFoods(at: foodCategory) { (result) in
             switch result {
             case .success(let foods):
                 if let foods = foods as? [Food] {
                     self.foods = foods
-                    success(true, foods[indexPath?.row ?? 0].imageUrl)
+                    success(true, "")
                 }
             case .failure(let message):
                 print(message)
@@ -34,6 +35,11 @@ final class FoodListViewModel: ViewModel {
     
     func viewModelForItem(at indexPath: IndexPath) -> CustomCollectionCellViewModel {
         let foodName = foods[indexPath.row].foodName
-        return CustomCollectionCellViewModel(foodName: foodName)
+        let imageURL = foods[indexPath.row].imageURL
+        return CustomCollectionCellViewModel(foodName: foodName, imageURL: imageURL)
+    }
+    
+    func getFoodDetailViewModel(at indexPath: IndexPath) -> FoodDetailViewModel {
+        return FoodDetailViewModel(foodName: foods[indexPath.row].foodName)
     }
 }

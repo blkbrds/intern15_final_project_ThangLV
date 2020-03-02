@@ -8,16 +8,16 @@
 
 import Foundation
 import UIKit
-import MVVM
 
 @available(iOS 11.0, *)
-final class HomeViewModel: ViewModel {
+final class HomeViewModel {
 
     // MARK: - Properties
     let countryNames: [String] = ["American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Irish", "Italian", "Jamaican", "Japanese", "Kenyan", "Malaysian", "Mexican", "Moroccan", "Russian", "Spanish", "Thai", "Tunisian", "Turkish", "Unknown", "Vietnamese"]
     var countries: [Country] = []
     private var categories: [Category] = []
-
+    
+    // MARK: - Functions
     func getCategories(at indexPath: IndexPath? = nil, success: @escaping Success) {
         HomeService.loadCategories() { result in
             switch result {
@@ -78,8 +78,15 @@ final class HomeViewModel: ViewModel {
     func viewModelForItem(at indexPath: IndexPath) -> CategoryCollectionCellViewModel {
         let categoryName = categories[indexPath.row].categoryName
         let categoryDescription = categories[indexPath.row].categoryDescription
+        let categoryImageURL = categories[indexPath.row].categoryThumb
         
-        return CategoryCollectionCellViewModel(categoryName: categoryName, categoryDescription: categoryDescription)
+        return CategoryCollectionCellViewModel(categoryImageURL: categoryImageURL, categoryName: categoryName, categoryDescription: categoryDescription)
+    }
+    
+    func viewModelForItem(at indexPath: IndexPath) -> CustomCollectionCellViewModel {
+        let categoryName = categories[indexPath.row].categoryName
+        let categoryImageURL = categories[indexPath.row].categoryThumb
+        return CustomCollectionCellViewModel(foodName: categoryName, imageURL: categoryImageURL)
     }
 }
 

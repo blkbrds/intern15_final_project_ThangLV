@@ -11,11 +11,11 @@ import UIKit
 
 final class CountryCollectionCellViewModel {
     
-    var countryImageUrl: String
+    var countryImageURL: String
     var countryName: String
     
-    init(countryImageUrl: String = "", countryName: String = "") {
-        self.countryImageUrl = countryImageUrl
+    init(countryImageURL: String = "", countryName: String = "") {
+        self.countryImageURL = countryImageURL
         self.countryName = countryName
     }
 }

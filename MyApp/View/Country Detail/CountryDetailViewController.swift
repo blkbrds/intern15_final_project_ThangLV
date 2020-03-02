@@ -9,13 +9,16 @@
 import UIKit
 
 @available(iOS 11.0, *)
-class CountryDetailViewController: ViewController {
-
-    @IBOutlet weak var collectionView: UICollectionView!
+final class CountryDetailViewController: ViewController {
     
+    // MARK: - IBOutlet
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
+    // MARK: - Private properties
     private let countryCollectionViewCell = "CustomCollectionViewCell"
     private let viewModel = CountryDetailViewModel()
     
+    // MARK: Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -36,6 +39,7 @@ class CountryDetailViewController: ViewController {
         }
     }
     
+    // MARK: - Private functions
     private func configCollectionView() {
         let countryCollectionCellNib = UINib(nibName: countryCollectionViewCell, bundle: nil)
         collectionView.register(countryCollectionCellNib, forCellWithReuseIdentifier: countryCollectionViewCell)
@@ -49,6 +53,7 @@ class CountryDetailViewController: ViewController {
     }
 }
 
+// MARK: - Extensions
 @available(iOS 11.0, *)
 extension CountryDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,19 +63,12 @@ extension CountryDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
         cell?.viewModel = viewModel.viewModelForItem(at: indexPath)
-
-        viewModel.getFoods(at: indexPath) { (done, url) in
-            if done {
-                cell?.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
-            } else {
-                print("Cannot load images")
-            }
-        }
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let foodDetailViewController = FoodDetailViewController()
+        foodDetailViewController.viewModel = viewModel.getFoodDetailViewModel(at: indexPath)
         navigationController?.pushViewController(foodDetailViewController, animated: true)
     }
 }
@@ -78,10 +76,12 @@ extension CountryDetailViewController: UICollectionViewDataSource {
 @available(iOS 11.0, *)
 extension CountryDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return Config.collectionTypeItemSize
+        return Config.countryDetailCollectionViewItemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Config.insetForSection
+        return Config.countryDetailCollectionViewSectionInset
     }
 }
+
+
