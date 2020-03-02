@@ -7,33 +7,25 @@
 //
 
 import UIKit
-
-// MARK: - Struct
-struct Config {
-    static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
-    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 30, height: UIScreen.main.bounds.width / 2)
-    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 9, height: UIScreen.main.bounds.height / 9)
-}
-
-//MARK: - Enum
-enum ViewTypeStatus {
-    case tableType
-    case collectionType
-
-    var itemSize: CGSize {
-        switch self {
-        case .tableType:
-            return Config.tableTypeItemSize
-        case .collectionType:
-            return Config.collectionTypeItemSize
-        }
-    }
-}
-
+import SDWebImage
 
 @available(iOS 11.0, *)
 final class HomeViewController: ViewController {
+    
+    //MARK: - Enum
+    enum ViewTypeStatus {
+        case tableType
+        case collectionType
+
+        var itemSize: CGSize {
+            switch self {
+            case .tableType:
+                return Config.tableTypeItemSize
+            case .collectionType:
+                return Config.collectionTypeItemSize
+            }
+        }
+    }
 
     // MARK: - IBOutlets
     @IBOutlet private weak var countryCollectionView: CountryCollectionView!
@@ -46,11 +38,7 @@ final class HomeViewController: ViewController {
     private var viewTypeStatus = ViewTypeStatus.tableType
 
     // MARK: Override functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-
+  
     override func setupUI() {
         title = "HOME"
         configNavigationBar()
@@ -59,16 +47,20 @@ final class HomeViewController: ViewController {
         countryCollectionView.dataSource = self
         countryCollectionView.delegate = self
     }
-
+    
     override func setupData() {
-        viewModel.loadAPI { (done, error) in
+        viewModel.getCategories() { (done, error) in
             if done {
                 self.categoryCollectionView.reloadData()
+            } else {
+                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
-        viewModel.loadAPI2 { (done, error) in
+        viewModel.getCountries() { (done, error) in
             if done {
                 self.countryCollectionView.reloadData()
+            } else {
+                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
@@ -113,22 +105,21 @@ extension HomeViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let categoryCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: categoryCollectionViewCell, for: indexPath) as! CategoryCollectionViewCell
-
         switch collectionView {
         case countryCollectionView:
             if let countryCollectionCell = countryCollectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CountryCollectionViewCell {
-                countryCollectionCell.configData(name: viewModel.countryName(at: indexPath), image: UIImage(named: viewModel.countryNames[indexPath.row]) ?? UIImage())
-
+                if UIImage(named: viewModel.countryNames[indexPath.row]) != nil {
+                    countryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
+                }
                 return countryCollectionCell
             }
         case categoryCollectionView:
-            categoryCollectionCell.updateData(category: viewModel.categoryName(at: indexPath))
-            Networking.shared().downloadImage(url: viewModel.categoryThumb(at: indexPath)) { (image) in
-                if let image = image {
-                    categoryCollectionCell.updateData(image: image)
-                    self.viewModel.categoryThumb(at: indexPath)
+            categoryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
+            viewModel.getCategories(at: indexPath) { (done, url) in
+                if done {
+                    categoryCollectionCell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
                 } else {
-                    categoryCollectionCell.updateData(image: nil)
+                    print("Cannot load images.")
                 }
             }
         default:
@@ -143,9 +134,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case countryCollectionView:
             let countryDetailViewController = CountryDetailViewController()
             navigationController?.pushViewController(countryDetailViewController, animated: true)
-        case categoryCollectionView:
-            let foodListViewController = FoodListViewController()
-            navigationController?.pushViewController(foodListViewController, animated: true)
+            countryDetailViewController.transferCountryName(countryName: viewModel.countryName(at: indexPath))
         default:
             print("Error.")
         }
@@ -160,4 +149,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         }
         return Config.countryCollectionViewItemSize
     }
+}
+
+// MARK: - Struct
+struct Config {
+    static let insetForSection = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    static let tableTypeItemSize = CGSize(width: UIScreen.main.bounds.width - 20, height: 250)
+    static let collectionTypeItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 20, height: UIScreen.main.bounds.width / 2 - 20)
+    static let countryCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.height / 9, height: UIScreen.main.bounds.height / 9)
 }
