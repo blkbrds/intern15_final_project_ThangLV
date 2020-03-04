@@ -11,7 +11,7 @@ import SDWebImage
 
 @available(iOS 11.0, *)
 final class HomeViewController: ViewController {
-    
+
     //MARK: - Enum
     enum ViewTypeStatus {
         case tableType
@@ -38,7 +38,7 @@ final class HomeViewController: ViewController {
     private var viewTypeStatus = ViewTypeStatus.tableType
 
     // MARK: Override functions
-  
+
     override func setupUI() {
         title = "HOME"
         configNavigationBar()
@@ -47,20 +47,20 @@ final class HomeViewController: ViewController {
         countryCollectionView.dataSource = self
         countryCollectionView.delegate = self
     }
-    
+
     override func setupData() {
-        viewModel.getCategories() { (done, error) in
+        viewModel.getCategories() { [weak self] (done, error) in
             if done {
-                self.categoryCollectionView.reloadData()
+                self?.categoryCollectionView.reloadData()
             } else {
-                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
-        viewModel.getCountries() { (done, error) in
+        viewModel.getCountries() { [weak self] (done, error) in
             if done {
-                self.countryCollectionView.reloadData()
+                self?.countryCollectionView.reloadData()
             } else {
-                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
@@ -108,20 +108,11 @@ extension HomeViewController: UICollectionViewDataSource {
         switch collectionView {
         case countryCollectionView:
             if let countryCollectionCell = countryCollectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CountryCollectionViewCell {
-                if UIImage(named: viewModel.countryNames[indexPath.row]) != nil {
-                    countryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
-                }
+                countryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
                 return countryCollectionCell
             }
         case categoryCollectionView:
             categoryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
-            viewModel.getCategories(at: indexPath) { (done, url) in
-                if done {
-                    categoryCollectionCell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
-                } else {
-                    print("Cannot load images.")
-                }
-            }
         default:
             print("Error")
         }

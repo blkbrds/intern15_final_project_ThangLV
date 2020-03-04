@@ -10,13 +10,34 @@ import Foundation
 
 final class Api {
     struct Path {
-        #if DEBUG
-            static let baseURL = "https://dev-asiantech.vn"
-        #elseif STG
-            static let baseURL = "https://stg-asiantech.vn"
-        #else
-            static let baseURL = "https://pro-asiantech.vn"
-        #endif
+        static let baseURL = "https://www.themealdb.com/api/json/v1/1"
+    }
+    
+    struct Home { }
+    struct CountryDetail { }
+    struct FoodList { }
+}
+
+extension Api.Path {
+    struct Home {
+        static var countryPath: String {
+            return baseURL/"list.php?a=list"
+        }
+        static var categoryPath: String {
+            return baseURL/"categories.php"
+        }
+    }
+    
+    struct CountryDetail {
+        static var path: String {
+            return baseURL/"filter.php?a="
+        }
+    }
+    
+    struct FoodList {
+        static var path: String {
+            return baseURL/"filter.php?c="
+        }
     }
 }
 

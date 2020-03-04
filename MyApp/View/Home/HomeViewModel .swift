@@ -27,7 +27,7 @@ final class HomeViewModel: ViewModel {
                     success(true, categories[indexPath?.row ?? 0].categoryThumb)
                 }
             case .failure(let message):
-                print(message)
+                success(false, message)
             }
         }
     }
@@ -41,7 +41,7 @@ final class HomeViewModel: ViewModel {
                     success(true, "")
                 }
             case .failure(let message):
-                print(message)
+                success(false, message)
             }
         }
     }
@@ -78,8 +78,9 @@ final class HomeViewModel: ViewModel {
     func viewModelForItem(at indexPath: IndexPath) -> CategoryCollectionCellViewModel {
         let categoryName = categories[indexPath.row].categoryName
         let categoryDescription = categories[indexPath.row].categoryDescription
+        let categoryImageUrl = categories[indexPath.row].categoryThumb
         
-        return CategoryCollectionCellViewModel(categoryName: categoryName, categoryDescription: categoryDescription)
+        return CategoryCollectionCellViewModel(categoryImageUrl: categoryImageUrl,categoryName: categoryName, categoryDescription: categoryDescription)
     }
 }
 

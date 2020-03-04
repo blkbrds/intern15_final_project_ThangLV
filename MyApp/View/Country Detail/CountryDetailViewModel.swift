@@ -25,7 +25,7 @@ final class CountryDetailViewModel: ViewModel {
                     success(true, foods[indexPath?.row ?? 0].imageUrl)
                 }
             case .failure(let message):
-                print(message)
+                success(false, message)
             }
         }
     }

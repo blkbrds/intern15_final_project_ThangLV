@@ -30,6 +30,6 @@ final class CountryCollectionViewCell: CollectionCell {
     
     private func updateView() {
         countryNameLabel.text = viewModel.countryName
-        countryImageView.image = UIImage(named: viewModel.countryName)
+        countryImageView.image = viewModel.countryImage
     }
 }
