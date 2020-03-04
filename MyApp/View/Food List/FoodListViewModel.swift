@@ -15,12 +15,18 @@ final class FoodListViewModel: ViewModel {
     var foodCategory: String = ""
     
     func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
-        FoodListService.loadFoods(at: foodCategory) { (result) in
+        FoodListService.loadFoods(at: foodCategory) { [weak self] (result) in
+            guard let this = self else {
+                success(false, "")
+                return
+            }
             switch result {
             case .success(let foods):
                 if let foods = foods as? [Food] {
-                    self.foods = foods
+                    this.foods = foods
                     success(true, foods[indexPath?.row ?? 0].imageUrl)
+                } else {
+                    success(false, "Data error.")
                 }
             case .failure(let message):
                 success(false, message)

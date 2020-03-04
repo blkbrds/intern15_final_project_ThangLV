@@ -12,7 +12,8 @@ import Foundation
 final class CountryDetailService {
 
     class func loadFoods(at country: String, completion: @escaping Completion) {
-        let urlString = "\(Api.Path.CountryDetail.path)\(country)"
+        let urlString = Api.Path.CountryDetail(countryName: country).path
+        
         Networking.shared().request(with: urlString) { (data, error) in
             if let error = error {
                 completion(.failure(error.localizedDescription))
@@ -20,7 +21,10 @@ final class CountryDetailService {
                 if let data = data {
                     var foods: [Food] = []
                     let json = data.toJSObject()
-                    guard let meals = json["meals"] as? JSONArray else { return }
+                    guard let meals = json["meals"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
 
                     for item in meals {
                         let food = Food(json: item)

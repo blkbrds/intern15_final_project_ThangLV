@@ -19,12 +19,18 @@ final class HomeViewModel: ViewModel {
     private var categories: [Category] = []
 
     func getCategories(at indexPath: IndexPath? = nil, success: @escaping Success) {
-        HomeService.loadCategories() { result in
+        HomeService.loadCategories() { [weak self] result in
+            guard let this = self else {
+                success(false, "")
+                return
+            }
             switch result {
             case .success(let categories):
                 if let categories = categories as? [Category] {
-                    self.categories = categories
+                    this.categories = categories
                     success(true, categories[indexPath?.row ?? 0].categoryThumb)
+                } else {
+                    success(false, "Data error.")
                 }
             case .failure(let message):
                 success(false, message)
@@ -33,12 +39,18 @@ final class HomeViewModel: ViewModel {
     }
 
     func getCountries(at indexPath: IndexPath? = nil, success: @escaping Success) {
-        HomeService.loadCountries() { result in
+        HomeService.loadCountries() { [weak self] result in
+            guard let this = self else {
+                success(false, "")
+                return
+            }
             switch result {
             case .success(let countries):
                 if let countries = countries as? [Country] {
-                    self.countries = countries
+                    this.countries = countries
                     success(true, "")
+                } else {
+                    success(false, "Data error.")
                 }
             case .failure(let message):
                 success(false, message)

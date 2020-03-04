@@ -21,7 +21,10 @@ final class HomeService {
                 if let data = data {
                     var categories: [Category] = []
                     let json = data.toJSObject()
-                    guard let jsCategories = json["categories"] as? JSONArray else { return }
+                    guard let jsCategories = json["categories"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
                     for item in jsCategories {
                         let category = Category(json: item)
                         categories.append(category)
@@ -44,7 +47,10 @@ final class HomeService {
             } else {
                 if let data = data {
                     let json = data.toJSObject()
-                    guard let meals = json["meals"] as? JSONArray else { return }
+                    guard let meals = json["meals"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
                     var countries: [Country] = []
 
                     for item in meals {

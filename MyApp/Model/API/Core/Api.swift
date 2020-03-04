@@ -29,14 +29,16 @@ extension Api.Path {
     }
     
     struct CountryDetail {
-        static var path: String {
-            return baseURL/"filter.php?a="
+        var countryName: String
+        var path: String {
+            return baseURL/"filter.php?a=\(countryName)"
         }
     }
     
     struct FoodList {
-        static var path: String {
-            return baseURL/"filter.php?c="
+        var categoryName: String
+        var path: String {
+            return baseURL/"filter.php?c=\(categoryName)"
         }
     }
 }

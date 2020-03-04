@@ -11,8 +11,9 @@ import Foundation
 @available(iOS 11.0, *)
 final class FoodListService {
     
-    class func loadFoods(at categoryName: String, completion: @escaping Completion) {
-        let urlString = "\(Api.Path.FoodList.path)\(categoryName)"
+    class func loadFoods(at categoryName: String = "", completion: @escaping Completion) {
+        
+        let urlString = Api.Path.FoodList(categoryName: categoryName).path
         
         Networking.shared().request(with: urlString) { (data, error) in
             if let error = error {
@@ -20,7 +21,10 @@ final class FoodListService {
             } else {
                 if let data = data {
                     let json = data.toJSObject()
-                    guard let meals = json["meals"] as? JSONArray else { return }
+                    guard let meals = json["meals"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
                     var foods: [Food] = []
                     
                     for item in meals {

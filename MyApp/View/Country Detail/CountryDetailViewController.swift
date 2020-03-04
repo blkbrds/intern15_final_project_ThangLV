@@ -56,17 +56,19 @@ extension CountryDetailViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
-        cell?.viewModel = viewModel.viewModelForItem(at: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.viewModel = viewModel.viewModelForItem(at: indexPath)
 
         viewModel.getFoods(at: indexPath) { [weak self] (done, url) in
             if done {
-                cell?.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
+                cell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
             } else {
                 print("Cannot load images")
             }
         }
-        return cell ?? UICollectionViewCell()
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

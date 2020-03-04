@@ -49,11 +49,11 @@ final class HomeViewController: ViewController {
     }
 
     override func setupData() {
-        viewModel.getCategories() { [weak self] (done, error) in
+        viewModel.getCategories() { [weak self] (done, message) in
             if done {
                 self?.categoryCollectionView.reloadData()
             } else {
-                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: message, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
         viewModel.getCountries() { [weak self] (done, error) in
@@ -104,7 +104,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let categoryCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: categoryCollectionViewCell, for: indexPath) as! CategoryCollectionViewCell
+        let categoryCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: categoryCollectionViewCell, for: indexPath) as? CategoryCollectionViewCell
         switch collectionView {
         case countryCollectionView:
             if let countryCollectionCell = countryCollectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CountryCollectionViewCell {
@@ -112,12 +112,15 @@ extension HomeViewController: UICollectionViewDataSource {
                 return countryCollectionCell
             }
         case categoryCollectionView:
+            guard let categoryCollectionCell = categoryCollectionCell else {
+                return UICollectionViewCell()
+            }
             categoryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
         default:
             print("Error")
         }
 
-        return categoryCollectionCell
+        return categoryCollectionCell ?? UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
