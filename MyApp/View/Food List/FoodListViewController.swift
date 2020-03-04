@@ -1,5 +1,5 @@
 //
-//  CountryDetailViewController.swift
+//  FoodListViewController.swift
 //  MyApp
 //
 //  Created by PCI0008 on 2/20/20.
@@ -9,12 +9,12 @@
 import UIKit
 
 @available(iOS 11.0, *)
-class CountryDetailViewController: ViewController {
+final class FoodListViewController: ViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
-    private let countryCollectionViewCell = "CustomCollectionViewCell"
-    private let viewModel = CountryDetailViewModel()
+    private let foodListCollectionViewCell = "FoodListCollectionViewCell"
+    private let viewModel = FoodListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,36 +31,36 @@ class CountryDetailViewController: ViewController {
             if done {
                 self?.collectionView.reloadData()
             } else {
-                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: error, msg: error, buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
     
     private func configCollectionView() {
-        let countryCollectionCellNib = UINib(nibName: countryCollectionViewCell, bundle: nil)
-        collectionView.register(countryCollectionCellNib, forCellWithReuseIdentifier: countryCollectionViewCell)
+        let foodListCellNib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
+        collectionView.register(foodListCellNib, forCellWithReuseIdentifier: foodListCollectionViewCell)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
     
-    func transferCountryName(countryName: String) {
-        viewModel.countryName = countryName
-        title = "\(countryName.uppercased()) FOODS"
+    func transferCategoryName(foodCategory: String) {
+        viewModel.foodCategory = foodCategory
+        title = foodCategory.uppercased()
     }
 }
 
 @available(iOS 11.0, *)
-extension CountryDetailViewController: UICollectionViewDataSource {
+extension FoodListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection()
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: foodListCollectionViewCell, for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.viewModel = viewModel.viewModelForItem(at: indexPath)
-
+        
         viewModel.getFoods(at: indexPath) { [weak self] (done, url) in
             if done {
                 cell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
@@ -68,6 +68,7 @@ extension CountryDetailViewController: UICollectionViewDataSource {
                 print("Cannot load images")
             }
         }
+        
         return cell
     }
     
@@ -78,12 +79,12 @@ extension CountryDetailViewController: UICollectionViewDataSource {
 }
 
 @available(iOS 11.0, *)
-extension CountryDetailViewController: UICollectionViewDelegateFlowLayout {
+extension FoodListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return Config.collectionTypeItemSize
+        return CGSize(width: UIScreen.main.bounds.width / 2 - 25, height: UIScreen.main.bounds.width / 2 - 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Config.insetForSection
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 }

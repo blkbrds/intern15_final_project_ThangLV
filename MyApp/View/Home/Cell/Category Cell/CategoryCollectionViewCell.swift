@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class CategoryCollectionViewCell: CollectionCell {
 
@@ -39,6 +40,7 @@ final class CategoryCollectionViewCell: CollectionCell {
     private func updateView() {
         categoryNameLabel.text = viewModel.categoryName
         categoryDescriptionLabel.text = viewModel.categoryDescription
+        categoryImageView.sd_setImage(with: URL(string: viewModel.categoryImageUrl), placeholderImage: UIImage(named: "placeholder.png"))
     }
     
     func updateData(category: Category? = nil, image: UIImage? = nil) {
@@ -48,9 +50,5 @@ final class CategoryCollectionViewCell: CollectionCell {
         } else {
             categoryImageView.image = image
         }
-    }
-    
-    func loadImage() -> UIImageView {
-        return categoryImageView
     }
 }

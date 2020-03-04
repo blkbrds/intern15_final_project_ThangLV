@@ -1,23 +1,21 @@
 //
-//  CountryDetailViewModel.swift
+//  FoodListViewModel.swift
 //  MyApp
 //
-//  Created by Chinh Le on 2/23/20.
+//  Created by Chinh Le on 2/22/20.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
 import Foundation
 import MVVM
 
-typealias Success = (Bool, String) -> Void
-
 @available(iOS 11.0, *)
-final class CountryDetailViewModel: ViewModel {
+final class FoodListViewModel: ViewModel {
     var foods: [Food] = []
-    var countryName: String = ""
-
-    func getFoods(at indexPath: IndexPath? = nil, success: @escaping Success) {
-        CountryDetailService.loadFoods(at: countryName) { [weak self] (result) in
+    var foodCategory: String = ""
+    
+    func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
+        FoodListService.loadFoods(at: foodCategory) { [weak self] (result) in
             guard let this = self else {
                 success(false, "")
                 return
@@ -35,7 +33,7 @@ final class CountryDetailViewModel: ViewModel {
             }
         }
     }
-
+    
     func numberOfItemsInSection() -> Int {
         return foods.count
     }

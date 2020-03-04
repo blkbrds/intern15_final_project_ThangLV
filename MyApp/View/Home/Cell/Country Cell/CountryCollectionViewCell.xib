@@ -27,7 +27,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.98431372549019602" green="0.78431372549019607" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aZx-8p-tap" firstAttribute="centerX" secondItem="NXM-2f-Ms1" secondAttribute="centerX" id="BWg-YQ-7OY"/>
                             <constraint firstItem="aZx-8p-tap" firstAttribute="centerY" secondItem="NXM-2f-Ms1" secondAttribute="centerY" id="fZX-ZV-4JM"/>
@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.98431372549019602" green="0.78431372549019607" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Um4-KS-LZ3" firstAttribute="centerY" secondItem="2ae-BO-Pbu" secondAttribute="centerY" id="acE-rb-eBd"/>
                             <constraint firstItem="Um4-KS-LZ3" firstAttribute="centerX" secondItem="2ae-BO-Pbu" secondAttribute="centerX" id="e5c-ZF-WKK"/>

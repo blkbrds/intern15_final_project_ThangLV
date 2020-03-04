@@ -23,10 +23,13 @@ final class CountryCollectionViewCell: CollectionCell {
     // MARK: - Override functions
     override func awakeFromNib() {
         super.awakeFromNib()
+        layer.masksToBounds = false
+        layer.cornerRadius = 5
+        clipsToBounds = true
     }
     
     private func updateView() {
         countryNameLabel.text = viewModel.countryName
-        countryImageView.image = UIImage(named: viewModel.countryName)
+        countryImageView.image = viewModel.countryImage
     }
 }
