@@ -55,4 +55,8 @@ final class FoodDetailViewModel {
             }
         }
     }
+    
+    func transferFoodName(foodName: String) {
+        self.foodName = foodName
+    }
 }

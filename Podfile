@@ -10,6 +10,8 @@ target 'MyApp' do
     project 'MyApp'
     
     pod 'SDWebImage/WebP'
+    
+    pod 'RealmSwift'
 
     # Architect
     pod 'MVVM-Swift' # MVVM Architect for iOS Application.
