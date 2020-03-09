@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import XCDYouTubeKit
 
 @available(iOS 11.0, *)
 final class SearchViewController: ViewController {
@@ -105,12 +106,20 @@ extension SearchViewController: SearchCollectionCellViewModelDelegate {
     func collectionViewCellModel(collectionViewCellModel: SearchCollectionCellViewModel, needsPerfom action: SearchCollectionCellViewModel.Action) {
         switch action {
         case .showCookingInstructionVideo(let cookingVideoURL):
-            guard let url = NSURL(string: cookingVideoURL) else { return }
-            let player = AVPlayer(url: url as URL)
-            let vc = AVPlayerViewController()
-            vc.player = player
-            present(vc, animated: true) {
-                vc.player?.play()
+            var url = cookingVideoURL
+            if let range = cookingVideoURL.range(of: "v=") {
+                url = String(cookingVideoURL[range.upperBound...])
+            }
+            
+            let playerViewController = AVPlayerViewController()
+            self.present(playerViewController, animated: true, completion: nil)
+            
+            XCDYouTubeClient.default().getVideoWithIdentifier(url) { (video: XCDYouTubeVideo?, error: Error?) in
+                if let streamURL = video?.streamURLs[XCDYouTubeVideoQuality.medium360.rawValue] {
+                    playerViewController.player = AVPlayer(url: streamURL)
+                } else {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }

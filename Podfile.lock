@@ -20,6 +20,7 @@ PODS:
     - libwebp (< 2.0, >= 0.5)
     - SDWebImage/Core
   - SwiftLint (0.38.0)
+  - XCDYouTubeKit (2.12.0)
 
 DEPENDENCIES:
   - MVVM-Swift
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - RealmSwift
   - SDWebImage/WebP
   - SwiftLint
+  - XCDYouTubeKit (~> 2.12)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -37,6 +39,7 @@ SPEC REPOS:
     - RealmSwift
     - SDWebImage
     - SwiftLint
+    - XCDYouTubeKit
 
 SPEC CHECKSUMS:
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
@@ -46,7 +49,8 @@ SPEC CHECKSUMS:
   RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  XCDYouTubeKit: cdad9e696f991aac2739c5b25586c81f1301ba30
 
-PODFILE CHECKSUM: b7f5fd3bbd3bf5f90d5e2a2e7b83601e58b391a6
+PODFILE CHECKSUM: 522e6d4cd6b9663d2ce8128c4183c55ce5401ad0
 
 COCOAPODS: 1.8.4

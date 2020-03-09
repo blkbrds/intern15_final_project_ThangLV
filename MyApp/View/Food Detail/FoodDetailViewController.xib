@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="categoryNameLabel" destination="NyO-xy-1Up" id="CGb-qg-gF1"/>
                 <outlet property="countryNameLabel" destination="c88-9D-kmK" id="3ZO-w0-RA9"/>
+                <outlet property="favoriteButton" destination="FnG-yC-ZrV" id="bhp-nk-QFH"/>
                 <outlet property="foodImageView" destination="Uey-2l-iaS" id="y3A-ct-i7j"/>
                 <outlet property="foodNameLabel" destination="Dlf-nP-r54" id="9OP-DZ-0P1"/>
                 <outlet property="infoView" destination="tn9-Dv-kbc" id="Cyz-2k-yen"/>
@@ -74,7 +75,10 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnG-yC-ZrV">
                                             <rect key="frame" x="0.0" y="0.0" width="33.5" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" image="favor"/>
+                                            <state key="normal" image="heart"/>
+                                            <connections>
+                                                <action selector="favoriteButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="VH1-pJ-Lvh"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -190,10 +194,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5N9-nH-bdX" secondAttribute="trailing" id="prf-VP-E13"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="133.59999999999999" y="152.47376311844079"/>
+            <point key="canvasLocation" x="81" y="147"/>
         </view>
     </objects>
     <resources>
-        <image name="favor" width="23" height="23"/>
+        <image name="heart" width="32" height="32"/>
     </resources>
 </document>

@@ -49,10 +49,16 @@
 		B046960C240760CC0050958F /* Data.Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0469604240760CA0050958F /* Data.Ext.swift */; };
 		B046960D240760CC0050958F /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0469605240760CC0050958F /* UIViewControllerExt.swift */; };
 		B046960E240760CC0050958F /* InputViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0469606240760CC0050958F /* InputViewExt.swift */; };
+		B089B2692410E3BD005AAE9C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B089B2682410E3BD005AAE9C /* RealmManager.swift */; };
+		B089B26F2410F336005AAE9C /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B089B26E2410F336005AAE9C /* FavoriteViewModel.swift */; };
+		B089B2712410F395005AAE9C /* FavoriteTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B089B2702410F395005AAE9C /* FavoriteTableCellViewModel.swift */; };
+		B08C28D6241092AB00B9F8AA /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B08C28D4241092AB00B9F8AA /* FavoriteTableViewCell.xib */; };
+		B08C28D7241092AB00B9F8AA /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C28D5241092AB00B9F8AA /* FavoriteTableViewCell.swift */; };
+		B08C28D9241092D300B9F8AA /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C28D8241092D300B9F8AA /* FavoriteViewController.swift */; };
+		B08C28DB241092D900B9F8AA /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B08C28DA241092D900B9F8AA /* FavoriteViewController.xib */; };
+		B08C28DD241092F100B9F8AA /* FavoriteFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08C28DC241092F100B9F8AA /* FavoriteFood.swift */; };
 		B0B5902623FBD32200EEE1AC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5902423FBD32200EEE1AC /* TabBarController.swift */; };
 		B0B5902723FBD32200EEE1AC /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5902523FBD32200EEE1AC /* NavigationController.swift */; };
-		B0B5902D23FBD35600EEE1AC /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5902B23FBD35600EEE1AC /* FavoriteViewController.swift */; };
-		B0B5902E23FBD35600EEE1AC /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B5902C23FBD35600EEE1AC /* FavoriteViewController.xib */; };
 		B0B5903123FBD3A900EEE1AC /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0B5902F23FBD3A900EEE1AC /* SearchViewController.xib */; };
 		B0B5903223FBD3A900EEE1AC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B5903023FBD3A900EEE1AC /* SearchViewController.swift */; };
 		B0CDF5C7240657C5001367D0 /* SDWebImageMapKit.h in Frameworks */ = {isa = PBXBuildFile; fileRef = B0CDF5C6240657C5001367D0 /* SDWebImageMapKit.h */; };
@@ -174,10 +180,16 @@
 		B0469604240760CA0050958F /* Data.Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.Ext.swift; sourceTree = "<group>"; };
 		B0469605240760CC0050958F /* UIViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		B0469606240760CC0050958F /* InputViewExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewExt.swift; sourceTree = "<group>"; };
+		B089B2682410E3BD005AAE9C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		B089B26E2410F336005AAE9C /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		B089B2702410F395005AAE9C /* FavoriteTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableCellViewModel.swift; sourceTree = "<group>"; };
+		B08C28D4241092AB00B9F8AA /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
+		B08C28D5241092AB00B9F8AA /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		B08C28D8241092D300B9F8AA /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		B08C28DA241092D900B9F8AA /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
+		B08C28DC241092F100B9F8AA /* FavoriteFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteFood.swift; sourceTree = "<group>"; };
 		B0B5902423FBD32200EEE1AC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B0B5902523FBD32200EEE1AC /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		B0B5902B23FBD35600EEE1AC /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
-		B0B5902C23FBD35600EEE1AC /* FavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		B0B5902F23FBD3A900EEE1AC /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		B0B5903023FBD3A900EEE1AC /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B0CDF5B9240657A3001367D0 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = "../../Downloads/SDWebImage-master 3/SDWebImage.xcodeproj"; sourceTree = "<group>"; };
@@ -307,11 +319,23 @@
 			path = "Country Cell";
 			sourceTree = "<group>";
 		};
+		B08C28CF2410928300B9F8AA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B08C28D5241092AB00B9F8AA /* FavoriteTableViewCell.swift */,
+				B08C28D4241092AB00B9F8AA /* FavoriteTableViewCell.xib */,
+				B089B2702410F395005AAE9C /* FavoriteTableCellViewModel.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B0B5902823FBD34300EEE1AC /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				B0B5902B23FBD35600EEE1AC /* FavoriteViewController.swift */,
-				B0B5902C23FBD35600EEE1AC /* FavoriteViewController.xib */,
+				B08C28D8241092D300B9F8AA /* FavoriteViewController.swift */,
+				B08C28DA241092D900B9F8AA /* FavoriteViewController.xib */,
+				B089B26E2410F336005AAE9C /* FavoriteViewModel.swift */,
+				B08C28CF2410928300B9F8AA /* Cell */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -543,6 +567,7 @@
 				B04695F7240760950050958F /* Country.swift */,
 				B04695FA240760950050958F /* Food.swift */,
 				B04695F8240760950050958F /* Networking.swift */,
+				B08C28DC241092F100B9F8AA /* FavoriteFood.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -586,6 +611,7 @@
 				B0469601240760C90050958F /* StringExt.swift */,
 				B0469605240760CC0050958F /* UIViewControllerExt.swift */,
 				B0469603240760CA0050958F /* URLExt.swift */,
+				B089B2682410E3BD005AAE9C /* RealmManager.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -720,14 +746,15 @@
 			files = (
 				EC5337BA1EF78E4D00ACE038 /* Localizable.strings in Resources */,
 				B042D63D240CA1E200578D5D /* CountryDetailViewController.xib in Resources */,
-				B0B5902E23FBD35600EEE1AC /* FavoriteViewController.xib in Resources */,
 				B042D638240C9F8700578D5D /* CategoryCollectionViewCell.xib in Resources */,
 				B042D61A240C9D3A00578D5D /* FoodDetailViewController.xib in Resources */,
+				B08C28D6241092AB00B9F8AA /* FavoriteTableViewCell.xib in Resources */,
 				B042D632240C9DB700578D5D /* CountryCollectionViewCell.xib in Resources */,
 				B0B5903123FBD3A900EEE1AC /* SearchViewController.xib in Resources */,
 				F1C6352C1EF141F300D0A1A0 /* LaunchScreen.storyboard in Resources */,
 				B042D623240C9D7B00578D5D /* CustomCollectionViewCell.xib in Resources */,
 				B042D643240CA1F200578D5D /* FoodListViewController.xib in Resources */,
+				B08C28DB241092D900B9F8AA /* FavoriteViewController.xib in Resources */,
 				B0FB3401240CFF3F00B43A1E /* SearchCollectionViewCell.xib in Resources */,
 				B042D649240CA5F700578D5D /* Assets.xcassets in Resources */,
 				B042D628240C9D9C00578D5D /* HomeViewController.xib in Resources */,
@@ -792,6 +819,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -801,6 +829,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -820,6 +849,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/XCDYouTubeKit/XCDYouTubeKit.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -829,6 +859,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XCDYouTubeKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,6 +901,7 @@
 				B042D63F240CA1E200578D5D /* CountryDetailViewController.swift in Sources */,
 				B046960C240760CC0050958F /* Data.Ext.swift in Sources */,
 				B046960A240760CC0050958F /* DictionaryExt.swift in Sources */,
+				B08C28D7241092AB00B9F8AA /* FavoriteTableViewCell.swift in Sources */,
 				B0E2FFD4240E3B820081A2C7 /* SearchService.swift in Sources */,
 				EC5337C11EF7939C00ACE038 /* TableCell.swift in Sources */,
 				B0B5902723FBD32200EEE1AC /* NavigationController.swift in Sources */,
@@ -878,17 +910,19 @@
 				B046960E240760CC0050958F /* InputViewExt.swift in Sources */,
 				B0B5903223FBD3A900EEE1AC /* SearchViewController.swift in Sources */,
 				EC5337C31EF793B100ACE038 /* CollectionCell.swift in Sources */,
+				B08C28D9241092D300B9F8AA /* FavoriteViewController.swift in Sources */,
 				ECC5B2CB1EF90495001A97BC /* Button.swift in Sources */,
 				B046960D240760CC0050958F /* UIViewControllerExt.swift in Sources */,
 				B042D627240C9D9C00578D5D /* HomeViewController.swift in Sources */,
 				EC0105541E8F8AE000CE013D /* AppDelegate.swift in Sources */,
 				F537DDD0239794BF00638CB4 /* URL.swift in Sources */,
 				EC332A481EA0A8CB0011DF1E /* Api.swift in Sources */,
-				B0B5902D23FBD35600EEE1AC /* FavoriteViewController.swift in Sources */,
 				B042D63E240CA1E200578D5D /* CountryDetailViewModel.swift in Sources */,
 				B042D618240C9D3A00578D5D /* FoodDetailViewModel.swift in Sources */,
 				B042D644240CA1F200578D5D /* FoodListViewController.swift in Sources */,
 				B04695FC240760950050958F /* Networking.swift in Sources */,
+				B089B2692410E3BD005AAE9C /* RealmManager.swift in Sources */,
+				B089B2712410F395005AAE9C /* FavoriteTableCellViewModel.swift in Sources */,
 				ECF23AB41E9B869B008C23C1 /* ApiManager.swift in Sources */,
 				B042D637240C9F8700578D5D /* CategoryCollectionViewCell.swift in Sources */,
 				B042D633240C9DB700578D5D /* CountryCollectionCellViewModel.swift in Sources */,
@@ -900,11 +934,13 @@
 				B042D629240C9D9C00578D5D /* HomeViewModel .swift in Sources */,
 				ECEC0C581ED44C5D00F6760A /* String.swift in Sources */,
 				B0012F9424079F7100540518 /* FoodListService.swift in Sources */,
+				B089B26F2410F336005AAE9C /* FavoriteViewModel.swift in Sources */,
 				B0469607240760CC0050958F /* NSErrorExt.swift in Sources */,
 				B04695F5240760650050958F /* HomeService.swift in Sources */,
 				B0E2FFD6240E496A0081A2C7 /* SearchCollectionCellViewModel.swift in Sources */,
 				EC5337BE1EF78FEA00ACE038 /* Font.swift in Sources */,
 				B042D631240C9DB700578D5D /* CountryCollectionViewCell.swift in Sources */,
+				B08C28DD241092F100B9F8AA /* FavoriteFood.swift in Sources */,
 				ECF23ABE1E9B8A6A008C23C1 /* Error.swift in Sources */,
 				EC5337B51EF7845700ACE038 /* Color.swift in Sources */,
 				B0E2FFD2240E0C480081A2C7 /* SearchViewModel.swift in Sources */,
