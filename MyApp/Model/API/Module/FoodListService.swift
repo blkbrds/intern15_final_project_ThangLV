@@ -11,8 +11,9 @@ import Foundation
 @available(iOS 11.0, *)
 final class FoodListService {
     
-    class func loadFoods(at categoryName: String, completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/filter.php?c=\(categoryName)"
+    class func loadFoods(at categoryName: String = "", completion: @escaping Completion) {
+        
+        let urlString = Api.Path.FoodList(categoryName: categoryName).path
         
         Networking.shared().request(with: urlString) { (data, error) in
             if let error = error {
@@ -20,7 +21,10 @@ final class FoodListService {
             } else {
                 if let data = data {
                     let json = data.toJSObject()
-                    let meals = json["meals"] as? JSONArray ?? []
+                    guard let meals = json["meals"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
                     var foods: [Food] = []
                     
                     for item in meals {
@@ -29,7 +33,10 @@ final class FoodListService {
                     }
                     completion(.success(foods))
                 } else {
-                    completion(.failure("API error."))
+                    if let error = error {
+                        completion(.failure(error.localizedDescription))
+
+                    }
                 }
             }
         }

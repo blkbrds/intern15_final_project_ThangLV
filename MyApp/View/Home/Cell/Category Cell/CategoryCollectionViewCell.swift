@@ -56,8 +56,4 @@ final class CategoryCollectionViewCell: CollectionCell {
             categoryImageView.image = image
         }
     }
-    
-    func loadImage() -> UIImageView {
-        return categoryImageView
-    }
 }

@@ -63,18 +63,18 @@ final class HomeViewController: ViewController {
     }
 
     override func setupData() {
-        viewModel.getCategories() { (done, error) in
+        viewModel.getCategories() { [weak self] (done, message) in
             if done {
-                self.categoryCollectionView.reloadData()
+                self?.categoryCollectionView.reloadData()
             } else {
-                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: message, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
-        viewModel.getCountries() { (done, error) in
+        viewModel.getCountries() { [weak self] (done, error) in
             if done {
-                self.countryCollectionView.reloadData()
+                self?.countryCollectionView.reloadData()
             } else {
-                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
@@ -123,28 +123,23 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let categoryCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: categoryCollectionViewCell, for: indexPath) as! CategoryCollectionViewCell
+        let categoryCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: categoryCollectionViewCell, for: indexPath) as? CategoryCollectionViewCell
         switch collectionView {
         case countryCollectionView:
             if let countryCollectionCell = countryCollectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CountryCollectionViewCell {
-                if UIImage(named: viewModel.countryNames[indexPath.row]) != nil {
-                    countryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
-                }
+                countryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
                 return countryCollectionCell
             }
         case categoryCollectionView:
-            if viewTypeStatus == .collectionType {
-                let customCollectionCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: customCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
-                customCollectionCell?.viewModel = viewModel.viewModelForItem(at: indexPath)
-                customCollectionCell?.nameOfFoodLabel().isHidden = true
-                return customCollectionCell ?? CustomCollectionViewCell()
+            guard let categoryCollectionCell = categoryCollectionCell else {
+                return UICollectionViewCell()
             }
             categoryCollectionCell.viewModel = viewModel.viewModelForItem(at: indexPath)
         default:
             print("Error")
         }
 
-        return categoryCollectionCell
+        return categoryCollectionCell ?? UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

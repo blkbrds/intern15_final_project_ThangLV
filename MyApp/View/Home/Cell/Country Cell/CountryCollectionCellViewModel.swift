@@ -13,9 +13,12 @@ final class CountryCollectionCellViewModel {
     
     var countryImageURL: String
     var countryName: String
+    var countryImage: UIImage? = nil
     
-    init(countryImageURL: String = "", countryName: String = "") {
-        self.countryImageURL = countryImageURL
+
+    init(countryImageUrl: String = "", countryName: String = "", countryImage: UIImage? = nil) {
+        self.countryImageUrl = countryImageUrl
         self.countryName = countryName
+        self.countryImage = UIImage(named: countryName)
     }
 }

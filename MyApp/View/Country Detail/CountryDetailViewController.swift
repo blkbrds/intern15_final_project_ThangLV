@@ -30,11 +30,11 @@ final class CountryDetailViewController: ViewController {
     }
     
     override func setupData() {
-        viewModel.getFoods() { (done, _) in
+        viewModel.getFoods() { [weak self] (done, error) in
             if done {
-                self.collectionView.reloadData()
+                self?.collectionView.reloadData()
             } else {
-                self.alert(title: "API error!", msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
@@ -61,9 +61,20 @@ extension CountryDetailViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell
-        cell?.viewModel = viewModel.viewModelForItem(at: indexPath)
-        return cell ?? UICollectionViewCell()
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCollectionViewCell, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.viewModel = viewModel.viewModelForItem(at: indexPath)
+
+        viewModel.getFoods(at: indexPath) { [weak self] (done, url) in
+            if done {
+                cell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
+            } else {
+                print("Cannot load images")
+            }
+        }
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
