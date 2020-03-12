@@ -14,17 +14,22 @@ final class FoodListViewModel {
     var foods: [Food] = []
     var foodCategory: String = ""
     
-    // MARK: - Functions
-    func getFoods(success: @escaping Success) {
-        FoodListService.loadFoods(at: foodCategory) { (result) in
+    func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
+        FoodListService.loadFoods(at: foodCategory) { [weak self] (result) in
+            guard let this = self else {
+                success(false, "")
+                return
+            }
             switch result {
             case .success(let foods):
                 if let foods = foods as? [Food] {
-                    self.foods = foods
-                    success(true, "")
+                    this.foods = foods
+                    success(true, foods[indexPath?.row ?? 0].imageUrl)
+                } else {
+                    success(false, "Data error.")
                 }
             case .failure(let message):
-                print(message)
+                success(false, message)
             }
         }
     }

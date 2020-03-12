@@ -13,36 +13,44 @@ final class HomeService {
     
     //MARK: - Load API functions
     class func loadCategories(completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/categories.php"
+        let urlString = Api.Path.Home.categoryPath
         Networking.shared().request(with: urlString) { (data, error) in
-            if error != nil {
-                completion(.failure("API error."))
+            if let error = error {
+                completion(.failure(error.localizedDescription))
             } else {
                 if let data = data {
                     var categories: [Category] = []
                     let json = data.toJSObject()
-                    let jsCategories = json["categories"] as? JSONArray ?? []
+                    guard let jsCategories = json["categories"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
                     for item in jsCategories {
                         let category = Category(json: item)
                         categories.append(category)
                     }
                     completion(.success(categories))
                 } else {
-                    completion(.failure("Data format is error."))
+                    if let error = error {
+                        completion(.failure(error.localizedDescription))
+                    }
                 }
             }
         }
     }
 
     class func loadCountries(completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+        let urlString = Api.Path.Home.countryPath
         Networking.shared().request(with: urlString) { (data, error) in
-            if error != nil {
-                completion(.failure("API error."))
+            if let error = error {
+                completion(.failure(error.localizedDescription))
             } else {
                 if let data = data {
                     let json = data.toJSObject()
-                    let meals = json["meals"] as? JSONArray ?? []
+                    guard let meals = json["meals"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
                     var countries: [Country] = []
 
                     for item in meals {
@@ -52,7 +60,9 @@ final class HomeService {
         
                     completion(.success(countries))
                 } else {
-                    completion(.failure("Data for mat is error."))
+                    if let error = error {
+                        completion(.failure(error.localizedDescription))
+                    }
                 }
             }
         }
