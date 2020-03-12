@@ -17,16 +17,23 @@ final class CountryDetailViewModel {
     var countryName: String = ""
     
     // MARK: - Functions
-    func getFoods(success: @escaping Success) {
-        CountryDetailService.loadFoods(at: countryName) { (result) in
+
+    func getFoods(at indexPath: IndexPath? = nil, success: @escaping Success) {
+        CountryDetailService.loadFoods(at: countryName) { [weak self] (result) in
+            guard let this = self else {
+                success(false, "")
+                return
+            }
             switch result {
             case .success(let foods):
                 if let foods = foods as? [Food] {
-                    self.foods = foods
-                    success(true, "")
+                    this.foods = foods
+                    success(true, foods[indexPath?.row ?? 0].imageUrl)
+                } else {
+                    success(false, "Data error.")
                 }
             case .failure(let message):
-                print(message)
+                success(false, message)
             }
         }
     }

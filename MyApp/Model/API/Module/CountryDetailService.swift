@@ -12,7 +12,8 @@ import Foundation
 final class CountryDetailService {
 
     class func loadFoods(at country: String, completion: @escaping Completion) {
-        let urlString = "https://www.themealdb.com/api/json/v1/1/filter.php?a=\(country)"
+        let urlString = Api.Path.CountryDetail(countryName: country).path
+        
         Networking.shared().request(with: urlString) { (data, error) in
             if let error = error {
                 completion(.failure(error.localizedDescription))
@@ -20,7 +21,10 @@ final class CountryDetailService {
                 if let data = data {
                     var foods: [Food] = []
                     let json = data.toJSObject()
-                    let meals = json["meals"] as? JSONArray ?? []
+                    guard let meals = json["meals"] as? JSONArray else {
+                        completion(.failure(error!.localizedDescription))
+                        return
+                    }
 
                     for item in meals {
                         let food = Food(json: item)
@@ -28,7 +32,9 @@ final class CountryDetailService {
                     }
                     completion(.success(foods))
                 } else {
-                    completion(.failure("API error."))
+                    if let error = error {
+                        completion(.failure(error.localizedDescription))
+                    }
                 }
             }
         }
