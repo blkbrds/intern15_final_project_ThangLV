@@ -11,7 +11,7 @@ import UIKit
 
 final class CountryCollectionCellViewModel {
     
-    var countryImageUrl: String
+    var countryImageURL: String
     var countryName: String
     var countryImage: UIImage? = nil
     

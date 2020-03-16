@@ -9,12 +9,12 @@
 import Foundation
 
 final class CategoryCollectionCellViewModel {
-    var categoryImageUrl: String
+    var categoryImageURL: String
     var categoryName: String
     var categoryDescription: String
     
-    init(categoryImageUrl: String = "", categoryName: String = "", categoryDescription: String = "") {
-        self.categoryImageUrl = categoryImageUrl
+    init(categoryImageURL: String = "", categoryName: String = "", categoryDescription: String = "") {
+        self.categoryImageURL = categoryImageURL
         self.categoryName = categoryName
         self.categoryDescription = categoryDescription
     }

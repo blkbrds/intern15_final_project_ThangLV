@@ -7,14 +7,16 @@
 //
 
 import Foundation
-import MVVM
 
 typealias Success = (Bool, String) -> Void
 
 @available(iOS 11.0, *)
-final class CountryDetailViewModel: ViewModel {
+final class CountryDetailViewModel {
+    // MARK: - Properties
     var foods: [Food] = []
     var countryName: String = ""
+    
+    // MARK: - Functions
 
     func getFoods(at indexPath: IndexPath? = nil, success: @escaping Success) {
         CountryDetailService.loadFoods(at: countryName) { [weak self] (result) in
@@ -42,6 +44,11 @@ final class CountryDetailViewModel: ViewModel {
     
     func viewModelForItem(at indexPath: IndexPath) -> CustomCollectionCellViewModel {
         let foodName = foods[indexPath.row].foodName
-        return CustomCollectionCellViewModel(foodName: foodName)
+        let imageURL = foods[indexPath.row].imageURL
+        return CustomCollectionCellViewModel(foodName: foodName, imageURL: imageURL)
+    }
+    
+    func getFoodDetailViewModel(at indexPath: IndexPath) -> FoodDetailViewModel {
+        return FoodDetailViewModel(foodName: foods[indexPath.row].foodName)
     }
 }

@@ -7,13 +7,14 @@
 //
 
 import Foundation
-import MVVM
 
 @available(iOS 11.0, *)
-final class FoodListViewModel: ViewModel {
+final class FoodListViewModel {
+    // MARK: - Properties
     var foods: [Food] = []
     var foodCategory: String = ""
     
+    // MARK: - Functions
     func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
         FoodListService.loadFoods(at: foodCategory) { [weak self] (result) in
             guard let this = self else {
@@ -40,6 +41,11 @@ final class FoodListViewModel: ViewModel {
     
     func viewModelForItem(at indexPath: IndexPath) -> CustomCollectionCellViewModel {
         let foodName = foods[indexPath.row].foodName
-        return CustomCollectionCellViewModel(foodName: foodName)
+        let imageURL = foods[indexPath.row].imageURL
+        return CustomCollectionCellViewModel(foodName: foodName, imageURL: imageURL)
+    }
+    
+    func getFoodDetailViewModel(at indexPath: IndexPath) -> FoodDetailViewModel {
+        return FoodDetailViewModel(foodName: foods[indexPath.row].foodName)
     }
 }

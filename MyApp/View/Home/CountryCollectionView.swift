@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CountryCollectionView: UICollectionView {
+final class CountryCollectionView: UICollectionView {
     
     private let countryCollectionViewCell = "CountryCollectionViewCell"
     
@@ -32,6 +32,6 @@ extension CountryCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Config.insetForSection
+        return Config.countryCollectionViewSectionInset
     }
 }

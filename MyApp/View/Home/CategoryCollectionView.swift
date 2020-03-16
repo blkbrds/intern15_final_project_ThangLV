@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryCollectionView: UICollectionView {
+final class CategoryCollectionView: UICollectionView {
     
     private let categoryCollectionViewCell = "CategoryCollectionViewCell"
     

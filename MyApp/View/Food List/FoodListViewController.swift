@@ -10,12 +10,15 @@ import UIKit
 
 @available(iOS 11.0, *)
 final class FoodListViewController: ViewController {
-
+    
+    // MARK; IBOutlet
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    // MARK: - Private functions
     private let foodListCollectionViewCell = "FoodListCollectionViewCell"
     private let viewModel = FoodListViewModel()
     
+    // MARK: - Overrride functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -36,6 +39,7 @@ final class FoodListViewController: ViewController {
         }
     }
     
+    // MARK: - Private functions
     private func configCollectionView() {
         let foodListCellNib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
         collectionView.register(foodListCellNib, forCellWithReuseIdentifier: foodListCollectionViewCell)
@@ -49,6 +53,7 @@ final class FoodListViewController: ViewController {
     }
 }
 
+// MARK: - Extensions
 @available(iOS 11.0, *)
 extension FoodListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,6 +79,7 @@ extension FoodListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let foodDetailViewController = FoodDetailViewController()
+        foodDetailViewController.viewModel = viewModel.getFoodDetailViewModel(at: indexPath)
         navigationController?.pushViewController(foodDetailViewController, animated: true)
     }
 }
@@ -81,10 +87,10 @@ extension FoodListViewController: UICollectionViewDataSource {
 @available(iOS 11.0, *)
 extension FoodListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 2 - 25, height: UIScreen.main.bounds.width / 2 - 25)
+        return Config.foodListCollectionViewItemSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return Config.foodListCollectionViewSectionInset
     }
 }
