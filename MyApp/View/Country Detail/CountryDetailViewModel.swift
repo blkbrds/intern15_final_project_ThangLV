@@ -2,7 +2,7 @@
 //  CountryDetailViewModel.swift
 //  MyApp
 //
-//  Created by Chinh Le on 2/23/20.
+//  Created by PCI0008 on 2/21/18.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
@@ -12,11 +12,8 @@ typealias Success = (Bool, String) -> Void
 
 @available(iOS 11.0, *)
 final class CountryDetailViewModel {
-    // MARK: - Properties
     var foods: [Food] = []
     var countryName: String = ""
-    
-    // MARK: - Functions
 
     func getFoods(at indexPath: IndexPath? = nil, success: @escaping Success) {
         CountryDetailService.loadFoods(at: countryName) { [weak self] (result) in
@@ -28,7 +25,7 @@ final class CountryDetailViewModel {
             case .success(let foods):
                 if let foods = foods as? [Food] {
                     this.foods = foods
-                    success(true, foods[indexPath?.row ?? 0].imageUrl)
+                    success(true, foods[indexPath?.row ?? 0].imageURL)
                 } else {
                     success(false, "Data error.")
                 }
@@ -46,6 +43,10 @@ final class CountryDetailViewModel {
         let foodName = foods[indexPath.row].foodName
         let imageURL = foods[indexPath.row].imageURL
         return CustomCollectionCellViewModel(foodName: foodName, imageURL: imageURL)
+    }
+    
+    func foodName(at indexPath: IndexPath) -> String {
+        return foods[indexPath.row].foodName
     }
     
     func getFoodDetailViewModel(at indexPath: IndexPath) -> FoodDetailViewModel {

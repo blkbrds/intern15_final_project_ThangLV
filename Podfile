@@ -9,20 +9,21 @@ workspace 'MyApp.xcworkspace'
 target 'MyApp' do
     project 'MyApp'
     
-    pod 'SDWebImage/WebP'
-
+    pod "XCDYouTubeKit", "~> 2.12"
+    
+    pod 'SDWebImage', '~> 5.0'
+    
+    pod 'RealmSwift'
+    
     # Architect
     pod 'MVVM-Swift' # MVVM Architect for iOS Application.
-
+    
     # Data
     pod 'ObjectMapper' # Simple JSON Object mapping written in Swift. Please fix this version to 2.2.6 now.
 
-    # Utils
-    pod 'SwiftLint' # A tool to enforce Swift style and conventions.
-
-target 'MyAppTests' do
-    inherit! :complete
-end
+#target 'MyAppTests' do
+#    inherit! :complete
+#end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
