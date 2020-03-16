@@ -2,7 +2,7 @@
 //  FoodListViewController.swift
 //  MyApp
 //
-//  Created by PCI0008 on 2/20/20.
+//  Created by PCI0008 on 2/21/18.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
@@ -11,21 +11,22 @@ import UIKit
 @available(iOS 11.0, *)
 final class FoodListViewController: ViewController {
     
-    // MARK; IBOutlet
+    // MARK: - IBOutlet
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    // MARK: - Private functions
     private let foodListCollectionViewCell = "FoodListCollectionViewCell"
     private let viewModel = FoodListViewModel()
     
-    // MARK: - Overrride functions
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupData()
     }
     
+    // MARK: - Override functions
     override func setupUI() {
+        super.setupUI()
         configCollectionView()
     }
     
@@ -39,7 +40,6 @@ final class FoodListViewController: ViewController {
         }
     }
     
-    // MARK: - Private functions
     private func configCollectionView() {
         let foodListCellNib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
         collectionView.register(foodListCellNib, forCellWithReuseIdentifier: foodListCollectionViewCell)
@@ -65,15 +65,6 @@ extension FoodListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.viewModel = viewModel.viewModelForItem(at: indexPath)
-        
-        viewModel.getFoods(at: indexPath) { [weak self] (done, url) in
-            if done {
-                cell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
-            } else {
-                print("Cannot load images")
-            }
-        }
-        
         return cell
     }
     
@@ -81,6 +72,7 @@ extension FoodListViewController: UICollectionViewDataSource {
         let foodDetailViewController = FoodDetailViewController()
         foodDetailViewController.viewModel = viewModel.getFoodDetailViewModel(at: indexPath)
         navigationController?.pushViewController(foodDetailViewController, animated: true)
+        foodDetailViewController.viewModel.transferCategoryName(categoryName: viewModel.foodCategory)
     }
 }
 

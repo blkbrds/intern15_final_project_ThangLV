@@ -2,23 +2,20 @@
 //  CountryDetailViewController.swift
 //  MyApp
 //
-//  Created by PCI0008 on 2/20/20.
+//  Created by PCI0008 on 2/21/18.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
 import UIKit
 
 @available(iOS 11.0, *)
-final class CountryDetailViewController: ViewController {
-    
-    // MARK: - IBOutlet
+class CountryDetailViewController: ViewController {
+
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    // MARK: - Private properties
     private let countryCollectionViewCell = "CustomCollectionViewCell"
     private let viewModel = CountryDetailViewModel()
     
-    // MARK: Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -26,6 +23,7 @@ final class CountryDetailViewController: ViewController {
     }
     
     override func setupUI() {
+        super.setupUI()
         configCollectionView()
     }
     
@@ -34,12 +32,11 @@ final class CountryDetailViewController: ViewController {
             if done {
                 self?.collectionView.reloadData()
             } else {
-                self?.alert(title: error, msg: "Getting API not successfully", buttons: ["OK"], preferButton: "OK", handler: nil)
+                self?.alert(title: error, msg: "Getting API does not successful", buttons: ["OK"], preferButton: "OK", handler: nil)
             }
         }
     }
     
-    // MARK: - Private functions
     private func configCollectionView() {
         let countryCollectionCellNib = UINib(nibName: countryCollectionViewCell, bundle: nil)
         collectionView.register(countryCollectionCellNib, forCellWithReuseIdentifier: countryCollectionViewCell)
@@ -53,7 +50,6 @@ final class CountryDetailViewController: ViewController {
     }
 }
 
-// MARK: - Extensions
 @available(iOS 11.0, *)
 extension CountryDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,14 +61,6 @@ extension CountryDetailViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         cell.viewModel = viewModel.viewModelForItem(at: indexPath)
-
-        viewModel.getFoods(at: indexPath) { [weak self] (done, url) in
-            if done {
-                cell.loadImage().sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "placeholder.png"))
-            } else {
-                print("Cannot load images")
-            }
-        }
         return cell
     }
     
@@ -80,6 +68,7 @@ extension CountryDetailViewController: UICollectionViewDataSource {
         let foodDetailViewController = FoodDetailViewController()
         foodDetailViewController.viewModel = viewModel.getFoodDetailViewModel(at: indexPath)
         navigationController?.pushViewController(foodDetailViewController, animated: true)
+        foodDetailViewController.viewModel.transferCountryName(countryName: viewModel.countryName)
     }
 }
 

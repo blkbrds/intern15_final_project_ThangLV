@@ -2,7 +2,7 @@
 //  FoodListViewModel.swift
 //  MyApp
 //
-//  Created by Chinh Le on 2/22/20.
+//  Created by PCI0008 on 2/21/18.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
@@ -10,13 +10,11 @@ import Foundation
 
 @available(iOS 11.0, *)
 final class FoodListViewModel {
-    // MARK: - Properties
     var foods: [Food] = []
     var foodCategory: String = ""
     
-    // MARK: - Functions
     func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
-        FoodListService.loadFoods(at: foodCategory) { [weak self] (result) in
+        FoodListService.loadFoods(at: foodCategory) { [weak self] result in
             guard let this = self else {
                 success(false, "")
                 return
@@ -25,7 +23,7 @@ final class FoodListViewModel {
             case .success(let foods):
                 if let foods = foods as? [Food] {
                     this.foods = foods
-                    success(true, foods[indexPath?.row ?? 0].imageUrl)
+                    success(true, foods[indexPath?.row ?? 0].imageURL)
                 } else {
                     success(false, "Data error.")
                 }

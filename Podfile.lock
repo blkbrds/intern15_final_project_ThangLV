@@ -1,42 +1,40 @@
 PODS:
-  - libwebp (1.1.0):
-    - libwebp/demux (= 1.1.0)
-    - libwebp/mux (= 1.1.0)
-    - libwebp/webp (= 1.1.0)
-  - libwebp/demux (1.1.0):
-    - libwebp/webp
-  - libwebp/mux (1.1.0):
-    - libwebp/demux
-  - libwebp/webp (1.1.0)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
-  - SDWebImage/Core (4.4.8)
-  - SDWebImage/WebP (4.4.8):
-    - libwebp (< 2.0, >= 0.5)
-    - SDWebImage/Core
-  - SwiftLint (0.38.0)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - XCDYouTubeKit (2.12.0)
 
 DEPENDENCIES:
   - MVVM-Swift
   - ObjectMapper
-  - SDWebImage/WebP
-  - SwiftLint
+  - RealmSwift
+  - SDWebImage (~> 5.0)
+  - XCDYouTubeKit (~> 2.12)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - libwebp
+  https://github.com/cocoapods/specs.git:
     - MVVM-Swift
     - ObjectMapper
+    - Realm
+    - RealmSwift
     - SDWebImage
-    - SwiftLint
+    - XCDYouTubeKit
 
 SPEC CHECKSUMS:
-  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
-  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  XCDYouTubeKit: cdad9e696f991aac2739c5b25586c81f1301ba30
 
-PODFILE CHECKSUM: 63da3096b74fd6b584334100021ed8f193f55bf7
+PODFILE CHECKSUM: 97d50b233fcce0d59b939d6e4f76eedbf8cd3d28
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.5.3
