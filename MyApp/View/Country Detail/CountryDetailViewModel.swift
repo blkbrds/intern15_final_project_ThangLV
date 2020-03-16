@@ -17,7 +17,6 @@ final class CountryDetailViewModel {
     var countryName: String = ""
     
     // MARK: - Functions
-
     func getFoods(at indexPath: IndexPath? = nil, success: @escaping Success) {
         CountryDetailService.loadFoods(at: countryName) { [weak self] (result) in
             guard let this = self else {

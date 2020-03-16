@@ -52,7 +52,7 @@ final class HomeViewController: ViewController {
         setupUI()
         configCustomCollectionView()
     }
-    
+
     override func setupUI() {
         title = "HOME"
         configNavigationBar()
@@ -227,4 +227,5 @@ struct Config {
     static let foodListCollectionViewSectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     static let countryDetailCollectionViewItemSize = CGSize(width: UIScreen.main.bounds.width / 2 - 15, height: UIScreen.main.bounds.width / 2 + 40)
     static let countryDetailCollectionViewSectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+    static let favoriteCollectionViewCellHeight = CGFloat(120)
 }

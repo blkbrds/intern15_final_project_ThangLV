@@ -8,12 +8,14 @@
 
 import UIKit
 import SDWebImage
+import RealmSwift
 
 @available(iOS 11.0, *)
 final class FoodDetailViewController: ViewController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var foodImageView: UIImageView!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var categoryNameLabel: UILabel!
     @IBOutlet weak var countryNameLabel: UILabel!
@@ -28,7 +30,8 @@ final class FoodDetailViewController: ViewController {
     var viewModel = FoodDetailViewModel()
     var ingredients: [String] = []
     var measures: [String] = []
-
+    var isFavorite: Bool = false
+    
     // MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +86,22 @@ final class FoodDetailViewController: ViewController {
     @IBAction func ingredientsButtonTouchUpInside(_ sender: Any) {
         instructionTextView.isHidden = true
         ingredientListTableView.isHidden = false
+    }
+    
+    @IBAction func favoriteButtonTouchUpInside(_ sender: Any) {
+        switch isFavorite {
+        case true:
+            isFavorite = false
+            if let image = UIImage(named: "heart") {
+                favoriteButton.setImage(image, for: .normal)
+            }
+        case false:
+            isFavorite = true
+            if let image = UIImage(named: "heart1") {
+                favoriteButton.setImage(image, for: .normal)
+            }
+            viewModel.addNewFood()
+        }
     }
 }
 

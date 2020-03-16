@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 @available(iOS 13.0, *)
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
 
+final class AppDelegate: UIResponder, UIApplicationDelegate {
+    
     var window: UIWindow?
 
     static let shared: AppDelegate = {

@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import RealmSwift
 
 @available(iOS 11.0, *)
 final class FoodDetailViewModel {
     
     // MARK: - Properties
+//    let realm = try! Realm()
+//    lazy var favoriteFoods: Results<FavoriteFood> = { self.realm.objects(FavoriteFood.self) }()
     var foods: [Food] = []
     var foodName = ""
     
@@ -43,6 +46,10 @@ final class FoodDetailViewModel {
     }
     
     // MARK: - Functions
+    func addNewFood() {
+        RealmManager.shared().addNewFood(foodImageURL: foodImageURL, foodName: foodName, categoryName: categoryName, countryName: countryName)
+    }
+    
     func getFoods(success: @escaping Success) {
         FoodDetailService.loadFoods(with: foodName) { result in
             switch result {
@@ -54,5 +61,9 @@ final class FoodDetailViewModel {
                 success(false, message)
             }
         }
+    }
+    
+    func transferFoodName(foodName: String) {
+        self.foodName = foodName
     }
 }

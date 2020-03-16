@@ -10,6 +10,10 @@ target 'MyApp' do
     project 'MyApp'
     
     pod 'SDWebImage/WebP'
+    
+    pod 'RealmSwift'
+    
+    pod "XCDYouTubeKit", "~> 2.12"
 
     # Architect
     pod 'MVVM-Swift' # MVVM Architect for iOS Application.

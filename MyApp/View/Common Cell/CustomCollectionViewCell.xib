@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcg-C9-2sI">
                         <rect key="frame" x="0.0" y="0.0" width="455" height="545"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vz3-Hb-oqL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vz3-Hb-oqL">
                                 <rect key="frame" x="0.0" y="0.0" width="455" height="455"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Vz3-Hb-oqL" secondAttribute="height" multiplier="1:1" id="Tkm-sW-Yri"/>
@@ -71,7 +71,7 @@
                 <outlet property="foodImageView" destination="Vz3-Hb-oqL" id="RvO-nI-F7O"/>
                 <outlet property="foodNameLabel" destination="PUX-OV-sDg" id="sM7-Ia-i59"/>
             </connections>
-            <point key="canvasLocation" x="327.19999999999999" y="174.06296851574214"/>
+            <point key="canvasLocation" x="185" y="196"/>
         </collectionViewCell>
     </objects>
 </document>
