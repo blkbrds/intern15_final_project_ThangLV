@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,8 +30,8 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9lk-1P-FIy" customClass="CategoryCollectionView" customModule="MyApp" customModuleProvider="target">
-                    <rect key="frame" x="6" y="182" width="414" height="680"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9lk-1P-FIy" customClass="CategoryCollectionView" customModule="MyApp" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="172" width="414" height="690"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dvG-Jw-c3v">
                         <size key="itemSize" width="50" height="50"/>
@@ -46,7 +44,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="9lk-1P-FIy" secondAttribute="bottom" id="4kT-AB-F0a"/>
-                <constraint firstItem="9lk-1P-FIy" firstAttribute="top" secondItem="Zjw-ig-YeQ" secondAttribute="bottom" constant="10" id="8au-ig-EI7"/>
+                <constraint firstItem="9lk-1P-FIy" firstAttribute="top" secondItem="Zjw-ig-YeQ" secondAttribute="bottom" id="8au-ig-EI7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zjw-ig-YeQ" secondAttribute="trailing" id="Li9-hS-xEc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9lk-1P-FIy" secondAttribute="trailing" id="Tn9-kC-94m"/>
                 <constraint firstItem="Zjw-ig-YeQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Zjd-4E-Qkq"/>

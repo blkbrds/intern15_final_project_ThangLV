@@ -41,6 +41,13 @@ extension Api.Path {
             return baseURL/"filter.php?c=\(categoryName)"
         }
     }
+    
+    struct Search {
+        var keyword: String
+        var path: String {
+            return baseURL/"search.php?s=\(keyword)"
+        }
+    }
 }
 
 protocol URLStringConvertible {

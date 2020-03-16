@@ -10,6 +10,11 @@ PODS:
   - libwebp/webp (1.1.0)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
   - SDWebImage/Core (4.4.8)
   - SDWebImage/WebP (4.4.8):
     - libwebp (< 2.0, >= 0.5)
@@ -19,6 +24,7 @@ PODS:
 DEPENDENCIES:
   - MVVM-Swift
   - ObjectMapper
+  - RealmSwift
   - SDWebImage/WebP
   - SwiftLint
 
@@ -27,6 +33,8 @@ SPEC REPOS:
     - libwebp
     - MVVM-Swift
     - ObjectMapper
+    - Realm
+    - RealmSwift
     - SDWebImage
     - SwiftLint
 
@@ -34,9 +42,11 @@ SPEC CHECKSUMS:
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: 63da3096b74fd6b584334100021ed8f193f55bf7
+PODFILE CHECKSUM: b7f5fd3bbd3bf5f90d5e2a2e7b83601e58b391a6
 
 COCOAPODS: 1.8.4

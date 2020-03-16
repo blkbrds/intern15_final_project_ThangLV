@@ -12,7 +12,6 @@ import Foundation
 final class FoodListService {
     
     class func loadFoods(at categoryName: String = "", completion: @escaping Completion) {
-        
         let urlString = Api.Path.FoodList(categoryName: categoryName).path
         
         Networking.shared().request(with: urlString) { (data, error) in

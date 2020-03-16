@@ -9,9 +9,6 @@
 import Foundation
 import UIKit
 
-import Foundation
-import UIKit
-
 final class Food {
     var foodImage: UIImage?
     var foodName: String
@@ -19,8 +16,10 @@ final class Food {
     var countryName: String
     var cookingInstruction: String
     var imageURL: String
-    var ingredients: [String] = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var measures: [String] = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var cookingVideoURL: String
+    var ingredients: [String] = []
+    var measures: [String] = []
+    var numberOfCountries: Int = 20
 
     init(json: JSONObject) {
         foodName = json["strMeal"] as? String ?? ""
@@ -28,11 +27,12 @@ final class Food {
         countryName = json["strArea"] as? String ?? ""
         cookingInstruction = json["strInstructions"] as? String ?? ""
         imageURL = json["strMealThumb"] as? String ?? ""
-        for i in 0...19 {
-            ingredients[i] = json["strIngredient\(i + 1)"] as? String ?? ""
+        cookingVideoURL = json["strYoutube"] as? String ?? ""
+        for i in 0..<numberOfCountries {
+            ingredients.append(json["strIngredient\(i + 1)"] as? String ?? "")
         }
-        for j in 0...19 {
-            measures[j] = json["strMeasure\(j + 1)"] as? String ?? ""
+        for j in 0..<numberOfCountries {
+            measures.append(json["strMeasure\(j + 1)"] as? String ?? "")
         }
     }
 }

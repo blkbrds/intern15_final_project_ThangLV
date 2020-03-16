@@ -52,7 +52,7 @@ final class HomeViewController: ViewController {
         setupUI()
         configCustomCollectionView()
     }
-    
+
     override func setupUI() {
         title = "HOME"
         configNavigationBar()

@@ -1,23 +1,22 @@
 //
-//  FoodDetailService.swift
+//  SearchService.swift
 //  MyApp
 //
-//  Created by PCI0008 on 2/27/20.
+//  Created by PCI0008 on 3/3/20.
 //  Copyright © 2020 Asian Tech Co., Ltd. All rights reserved.
 //
 
 import Foundation
 
 @available(iOS 11.0, *)
-final class FoodDetailService {
-    
-    class func loadFoods(with foodName: String, completion: @escaping Completion) {
-        guard let foodNameEncoding = foodName.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else {
+final class SearchService {
+    class func loadFoods(with keyword: String, completion: @escaping Completion) {
+        guard let keywordEncoding = keyword.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else {
             completion(.failure("API link error."))
             return
         }
         
-        let urlString = Api.Path.Search(keyword: foodNameEncoding).path
+        let urlString = Api.Path.Search(keyword: keywordEncoding).path
         
         Networking.shared().request(with: urlString) { (data, error) in
             if let error = error {
