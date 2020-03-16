@@ -14,6 +14,7 @@ final class FoodListViewModel {
     var foods: [Food] = []
     var foodCategory: String = ""
     
+    // MARK: - Functions
     func getFoods(at indexPath: IndexPath? = nil,success: @escaping Success) {
         FoodListService.loadFoods(at: foodCategory) { [weak self] (result) in
             guard let this = self else {
