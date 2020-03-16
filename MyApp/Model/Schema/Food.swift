@@ -17,8 +17,9 @@ final class Food {
     var cookingInstruction: String
     var imageURL: String
     var cookingVideoURL: String
-    var ingredients: [String] = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
-    var measures: [String] = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    var ingredients: [String] = []
+    var measures: [String] = []
+    var numberOfCountries: Int = 20
 
     init(json: JSONObject) {
         foodName = json["strMeal"] as? String ?? ""
@@ -27,11 +28,11 @@ final class Food {
         cookingInstruction = json["strInstructions"] as? String ?? ""
         imageURL = json["strMealThumb"] as? String ?? ""
         cookingVideoURL = json["strYoutube"] as? String ?? ""
-        for i in 0...19 {
-            ingredients[i] = json["strIngredient\(i + 1)"] as? String ?? ""
+        for i in 0..<numberOfCountries {
+            ingredients.append(json["strIngredient\(i + 1)"] as? String ?? "")
         }
-        for j in 0...19 {
-            measures[j] = json["strMeasure\(j + 1)"] as? String ?? ""
+        for j in 0..<numberOfCountries {
+            measures.append(json["strMeasure\(j + 1)"] as? String ?? "")
         }
     }
 }

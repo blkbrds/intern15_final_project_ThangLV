@@ -16,7 +16,7 @@ final class SearchService {
             return
         }
         
-        let urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(keywordEncoding)"
+        let urlString = Api.Path.Search(keyword: keywordEncoding).path
         
         Networking.shared().request(with: urlString) { (data, error) in
             if let error = error {

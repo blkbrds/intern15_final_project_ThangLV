@@ -59,10 +59,12 @@ extension SearchViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchCollectionViewCell, for: indexPath) as? SearchCollectionViewCell
-        cell?.viewModel = viewModel.viewModelForItem(at: indexPath)
-        cell?.viewModel.delegate = self
-        return cell ?? UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchCollectionViewCell, for: indexPath) as? SearchCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.viewModel = viewModel.viewModelForItem(at: indexPath)
+        cell.viewModel.delegate = self
+        return cell
     }
 }
 
