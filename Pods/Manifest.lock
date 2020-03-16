@@ -1,24 +1,40 @@
 PODS:
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.5.1)
-  - SwiftLint (0.38.0)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - XCDYouTubeKit (2.12.0)
 
 DEPENDENCIES:
   - MVVM-Swift
   - ObjectMapper
-  - SwiftLint
+  - RealmSwift
+  - SDWebImage (~> 5.0)
+  - XCDYouTubeKit (~> 2.12)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - MVVM-Swift
     - ObjectMapper
-    - SwiftLint
+    - Realm
+    - RealmSwift
+    - SDWebImage
+    - XCDYouTubeKit
 
 SPEC CHECKSUMS:
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
-  SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  XCDYouTubeKit: cdad9e696f991aac2739c5b25586c81f1301ba30
 
-PODFILE CHECKSUM: d1ca8a39d5bc15fcadc08043a751a07b78809256
+PODFILE CHECKSUM: 6da7d88962c3e357a697cba5bc557e6c8d504237
 
-COCOAPODS: 1.8.1
+COCOAPODS: 1.5.3
